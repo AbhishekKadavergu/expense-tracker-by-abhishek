@@ -1,0 +1,12 @@
+:host::ng-deep .expense.p-card {
+  background-color: #ff5252;
+  color: #ffffff;
+}
+:host::ng-deep .income.p-card {
+  background-color: #689f38;
+  color: #ffffff;
+}
+:host::ng-deep .balance.p-card {
+  background-color: #0288d1;
+  color: #ffffff;
+}

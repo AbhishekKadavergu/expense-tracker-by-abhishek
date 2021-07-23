@@ -1,0 +1,25 @@
+.expenses {
+  font-weight: 700;
+  color: #ff5252;
+  /* text-decoration: line-through; */
+}
+
+/* .lowstock {
+  font-weight: 700;
+  color: #ffa726;
+} */
+
+.incomes {
+  font-weight: 700;
+  color: #66bb6a;
+}
+
+.negative {
+  font-weight: 700;
+  color: #fbc02d;
+}
+
+.positive {
+  font-weight: 700;
+  color: #0288d1;
+}

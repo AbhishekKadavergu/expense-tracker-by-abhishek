@@ -1,0 +1,47 @@
+<div class="login">
+  <h2 class="login-header">USER REGISTRATION</h2>
+  <form [formGroup]="userRegForm" class="login-container" (ngSubmit)="login()">
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
+      <input type="text" placeholder="Name" formControlName="name" />
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
+      <div *ngIf="formControls.name.errors.required">Name is required</div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+      <input type="email" placeholder="Email" formControlName="email" />
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+      <div *ngIf="formControls.email.errors.required">Email is required</div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+      <div *ngIf="formControls.password.errors.required">
+        Password is required
+      </div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.age.errors }">
+      <input type="number" placeholder="Age" formControlName="age" />
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.age.errors" class="help-block">
+      <div *ngIf="formControls.password.age.required">Age is required</div>
+    </div>
+
+    <p>
+      <input type="submit" value="REGISTER" />
+    </p>
+    <p>already a user, please click <a routerLink="/login">here</a></p>
+  </form>
+</div>
