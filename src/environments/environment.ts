@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   token: '',
   userName: '',
-  API_URL:'https://abhishek-expense-manager.herokuapp.com'
+  API_URL:'http://localhost:3000'
+  // API_URL:'https://abhishek-expense-manager.herokuapp.com'
 };
 
 /*
