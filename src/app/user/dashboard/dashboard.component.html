@@ -1,49 +1,42 @@
 <p-toast></p-toast>
 <h4>
-  <span style="color: red">(*) </span>Data related to {{ currentMonthYear }}
+    <span style="color: red">(*) </span>Data related to {{ currentMonthYear }}
 </h4>
-<div class="p-grid" style="text-align: center">
-  <div class="p-col">
-    <h3 *ngIf="!data">No Expense Data</h3>
-    <p-chart type="doughnut" [data]="data"></p-chart>
-    <h5 *ngIf="data">Expense Chart</h5>
-  </div>
-  <div class="p-col">
-    <h3 *ngIf="!IncomeData">No Income Data</h3>
-    <p-chart type="doughnut" [data]="IncomeData"></p-chart>
-    <h5 *ngIf="IncomeData">Income Chart</h5>
-  </div>
+<div class="grid" style="text-align: center">
+    <div class="col-12 xl:col-6 md:col-12 lg:col-3 sm:col-12">
+        <h3 *ngIf="!data">No Expense Data</h3>
+        <p-chart type="doughnut" [data]="data"></p-chart>
+        <h5 *ngIf="data">Expense Chart</h5>
+    </div>
+    <div class="col-12 xl:col-6 md:col-12 lg:col-3 sm:col-12">
+        <h3 *ngIf="!IncomeData">No Income Data</h3>
+        <p-chart type="doughnut" [data]="IncomeData"></p-chart>
+        <h5 *ngIf="IncomeData">Income Chart</h5>
+    </div>
 </div>
 
-<div class="p-grid p-jc-center">
-  <div class="p-col-2">
-    <div class="box">
-      <p-card
-        [header]="totalExpense | currency: 'INR'"
-        styleClass="expense"
-        icon="pi pi-minus"
-      >
-        <span> <i class="pi pi-minus"> </i> Expense</span>
-      </p-card>
+<div class="flex justify-content-center flex-wrap ">
+    <div class="flex align-items-center justify-content-center ">
+        <div class="box">
+            <p-card [header]="totalExpense | currency: 'INR'" styleClass="expense" icon="pi pi-minus">
+                <span> <i class="pi pi-minus"> </i> Expense</span>
+            </p-card>
+        </div>
     </div>
-  </div>
-  <div class="p-col-2">
-    <div class="box">
-      <p-card [header]="totalIncome | currency: 'INR'" styleClass="income">
-        <span> <i class="pi pi-plus"> </i> Income</span>
-      </p-card>
+    <div class="flex align-items-center justify-content-center">
+        <div class="box">
+            <p-card [header]="totalIncome | currency: 'INR'" styleClass="income">
+                <span> <i class="pi pi-plus"> </i> Income</span>
+            </p-card>
+        </div>
     </div>
-  </div>
-  <div class="p-col-2">
-    <div class="box">
-      <p-card
-        [header]="totalIncome - totalExpense | currency: 'INR'"
-        styleClass="balance"
-      >
-        <span> Balance</span>
-      </p-card>
+    <div class="flex align-items-center justify-content-center">
+        <div class="box">
+            <p-card [header]="totalIncome - totalExpense | currency: 'INR'" styleClass="balance">
+                <span> Balance</span>
+            </p-card>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- <div class="p-d-flex p-flex-column p-flex-md-row">
@@ -70,17 +63,9 @@
 </div> -->
 
 <div class="p-grid p-jc-center">
-  <div class="p-col-6">
-    <button
-      pButton
-      type="button"
-      pRipple
-      label="Get Details"
-      style="width: 100%"
-      class="p-button-raised p-button-outlined p-button-secondary"
-      (click)="show()"
-    ></button>
-  </div>
+    <div class="p-col-6">
+        <button pButton type="button" pRipple label="Get Details" style="width: 100%" class="p-button-raised p-button-outlined p-button-secondary" (click)="show()"></button>
+    </div>
 </div>
 
 <!-- <div class="p-d-flex p-flex-column p-flex-md-row">

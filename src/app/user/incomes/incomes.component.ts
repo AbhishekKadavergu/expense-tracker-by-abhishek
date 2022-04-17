@@ -16,7 +16,6 @@ export class IncomesComponent implements OnInit {
 
   userIncomes: any;
   showTable: boolean = false;
-  // date2: Date = new Date("2002-12-09")
   date2: Date = new Date('2021-12-09T00:00:00.000Z');
   incomeCategories: any[];
 
@@ -30,15 +29,15 @@ export class IncomesComponent implements OnInit {
     private restCallSer: RestCallsService
   ) {
     this.incomeCategories = [
-      { name: 'Salary income', code: 'Salary income' },
-      { name: 'Profits income', code: 'Profits income' },
-      { name: 'Interest income', code: 'Interest income' },
-      { name: 'Dividend income', code: 'Dividend income' },
-      { name: 'Rental income', code: 'Rental income' },
-      { name: 'Capital Gains', code: 'Capital Gains' },
-      { name: 'Royalty income', code: 'Royalty income' },
-      { name: 'Miscellaneous', code: 'Miscellaneous' },
-      { name: 'Others', code: 'Others' },
+      { label: 'Salary income', value: 'Salary income' },
+      { label: 'Profits income', value: 'Profits income' },
+      { label: 'Interest income', value: 'Interest income' },
+      { label: 'Dividend income', value: 'Dividend income' },
+      { label: 'Rental income', value: 'Rental income' },
+      { label: 'Capital Gains', value: 'Capital Gains' },
+      { label: 'Royalty income', value: 'Royalty income' },
+      { label: 'Miscellaneous', value: 'Miscellaneous' },
+      { label: 'Others', value: 'Others' },
     ];
   }
 
@@ -48,7 +47,7 @@ export class IncomesComponent implements OnInit {
       category: ['', Validators.required],
       date: ['', Validators.required],
     });
-    console.log(new Date('2002-12-09T00:00:00.000Z'));
+    console.log(this.date2);
   }
 
   get formControls() {
@@ -63,7 +62,7 @@ export class IncomesComponent implements OnInit {
     console.log(this.incomeForm.value);
     const incFormData = {
       amount: this.incomeForm.value.amount,
-      category: this.incomeForm.value.category.name,
+      category: this.incomeForm.value.category.value,
       date: this.incomeForm.value.date,
     };
 
@@ -181,7 +180,7 @@ export class IncomesComponent implements OnInit {
       this.showTable = true;
     } catch (error) {
       console.warn('Error: ', error);
-      this.setUserMessages('error', 'Error', 'Something went wrong!');
+      this.setUserMessages('error', 'Error', error.error.message);
     }
   }
 }

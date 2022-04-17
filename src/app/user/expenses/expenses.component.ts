@@ -38,19 +38,21 @@ export class ExpensesComponent implements OnInit {
     private restCallSer: RestCallsService
   ) {
     this.expCategories = [
-      { name: 'Clothing & footwear', code: 'Clothing & footwear' },
-      { name: 'Communication', code: 'Communication' },
-      { name: 'Education', code: 'Education' },
-      { name: 'Gifts', code: 'Gifts' },
-      { name: 'Groceries', code: 'Groceries' },
-      { name: 'Health', code: 'Health' },
-      { name: 'Home & Utilities', value: 'Home & Utilities' },
-      { name: 'Hotel', code: 'Hotel' },
-      { name: 'Miscellaneous', code: 'Miscellaneous' },
-      { name: 'Pets', code: 'Pets' },
-      { name: 'Sports', code: 'Sports' },
-      { name: 'Transportation', code: 'Transportation' },
-      { name: 'Others', code: 'Others' },
+      { label: 'Clothing & footwear', value: 'Clothing & footwear' },
+      { label: 'Communication', value: 'Communication' },
+      { label: 'Debts', value: 'Debts' },
+      { label: 'Education', value: 'Education' },
+      { label: 'EMI', value: 'EMI' },
+      { label: 'Gifts', value: 'Gifts' },
+      { label: 'Groceries', value: 'Groceries' },
+      { label: 'Health', value: 'Health' },
+      { label: 'Home & Utilities', value: 'Home & Utilities' },
+      { label: 'Hotel', value: 'Hotel' },
+      { label: 'Miscellaneous', value: 'Miscellaneous' },
+      { label: 'Pets', value: 'Pets' },
+      { label: 'Sports', value: 'Sports' },
+      { label: 'Transportation', value: 'Transportation' },
+      { label: 'Others', value: 'Others' },
     ];
   }
 
@@ -74,7 +76,7 @@ export class ExpensesComponent implements OnInit {
     }
     const expFormData = {
       amount: this.expenseForm.value.amount,
-      category: this.expenseForm.value.category.name,
+      category: this.expenseForm.value.category.value,
       date: this.expenseForm.value.date,
     };
 
@@ -192,7 +194,7 @@ export class ExpensesComponent implements OnInit {
       this.showTable = true;
     } catch (error) {
       console.warn('Error: ', error);
-      this.setUserMessages('error', 'Error', 'Something went wrong!');
+      this.setUserMessages('error', 'Error', error.error.message);
     }
   }
 }

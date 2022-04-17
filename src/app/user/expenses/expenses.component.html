@@ -1,67 +1,37 @@
 <h4>Add Expense</h4>
 <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-  <div class="p-formgroup-inline">
-    <div class="p-field">
-      <label for="amount" class="p-sr-only">Amount</label>
-      <input
-        id="amount"
-        type="number"
-        formControlName="amount"
-        pInputText
-        placeholder="Amount"
-      />
-    </div>
-    <div class="p-field">
-      <label for="category" class="p-sr-only">Category</label>
-      <!-- <input
+    <div class="formgroup-inline">
+        <div class="field">
+            <label for="amount" class="p-sr-only">Amount</label>
+            <input id="amount" type="number" formControlName="amount" pInputText placeholder="Amount" />
+        </div>
+        <div class="field">
+            <label for="category" class="p-sr-only">Category</label>
+            <!-- <input
         id="category"
         type="text"
         formControlName="category"
         pInputText
         placeholder="Category"
       /> -->
-      <p-dropdown
-        inputId="category"
-        [options]="expCategories"
-        placeholder="Select Category"
-        formControlName="category"
-        optionLabel="name"
-      ></p-dropdown>
+            <p-dropdown inputId="category" [options]="expCategories" placeholder="Select Category" formControlName="category" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="date" class="p-sr-only">Date</label>
+            <p-calendar placeholder="Date" formControlName="date" [showIcon]="true" inputId="date"></p-calendar>
+        </div>
+        <button pButton type="submit" label="ADD"></button>
     </div>
-    <div class="p-field">
-      <label for="date" class="p-sr-only">Date</label>
-      <p-calendar
-        placeholder="Date"
-        formControlName="date"
-        [showIcon]="true"
-        inputId="date"
-      ></p-calendar>
-    </div>
-    <button pButton type="submit" label="ADD"></button>
-  </div>
 </form>
 
-<button
-  pButton
-  class="p-mb-3"
-  type="button"
-  label="Get Expenses"
-  (click)="getAllDetails(undefined, undefined)"
-></button>
+<button pButton class="p-mb-3" type="button" label="Get Expenses" (click)="getAllDetails(undefined, undefined)"></button>
 
 <div class="card" *ngIf="showTable">
-  <p-table
-    #dt
-    [value]="userExpenses"
-    dataKey="_id"
-    editMode="row"
-    [globalFilterFields]="['category', 'amount']"
-    styleClass="p-datatable-responsive-demo"
-  >
-    <ng-template pTemplate="caption">
-      <div class="p-d-flex">
-        List of Expenses
-        <span class="p-ml-auto">
+    <p-table #dt [value]="userExpenses" dataKey="_id" editMode="row" [globalFilterFields]="['category', 'amount']" styleClass="p-datatable-responsive-demo">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex">
+                List of Expenses
+                <span class="p-ml-auto">
           <p-calendar
             [(ngModel)]="rangeDates"
             selectionMode="range"
@@ -77,7 +47,7 @@
             (click)="getDetailsWithinRange()"
           ></button>
         </span>
-        <span class="p-input-icon-left p-ml-auto">
+                <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
             pInputText
@@ -86,107 +56,69 @@
             placeholder="Search keyword"
           />
         </span>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th style="width: 8rem">Action</th>
-      </tr>
-    </ng-template>
-    <ng-template
-      pTemplate="body"
-      let-expense
-      let-editing="editing"
-      let-ri="rowIndex"
-    >
-      <tr [pEditableRow]="expense">
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <p-calendar
-                [(ngModel)]="expense.date"
-                [showIcon]="true"
-                inputId="icon"
-                dateFormat="dd.mm.yy"
-              ></p-calendar>
-            </ng-template>
-            <ng-template pTemplate="output">
-              <!-- {{ expense.date | date: "dd/MM/yyyy" }} -->
-              {{ expense.date | date }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input
-                pInputText
-                type="text"
-                [(ngModel)]="expense.category"
-                required
-              />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ expense.category }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th style="width: 8rem">Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-expense let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="expense">
+                <td>
+                    <span class="p-column-title">Date</span>
 
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="number" [(ngModel)]="expense.amount" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ expense.amount | currency: "INR" }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td style="text-align: center">
-          <button
-            *ngIf="!editing"
-            pButton
-            pRipple
-            type="button"
-            pInitEditableRow
-            icon="pi pi-pencil"
-            (click)="onRowEditInit(expense)"
-            class="p-button-rounded p-button-text"
-          ></button>
-          <button
-            *ngIf="!editing"
-            pButton
-            pRipple
-            type="button"
-            icon="pi pi-trash"
-            (click)="onRowDlete(expense)"
-            class="p-button-rounded p-button-text p-button-danger"
-          ></button>
-          <button
-            *ngIf="editing"
-            pButton
-            pRipple
-            type="button"
-            pSaveEditableRow
-            icon="pi pi-check"
-            (click)="onRowEditSave(expense)"
-            class="p-button-rounded p-button-text p-button-success p-mr-2"
-          ></button>
-          <button
-            *ngIf="editing"
-            pButton
-            pRipple
-            type="button"
-            pCancelEditableRow
-            icon="pi pi-times"
-            (click)="onRowEditCancel(expense, ri)"
-            class="p-button-rounded p-button-text p-button-danger"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-calendar [(ngModel)]="expense.date" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy"></p-calendar>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <!-- {{ expense.date | date: "dd/MM/yyyy" }} -->
+                            {{ expense.date | date }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <span class="p-column-title">Category</span>
+
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="expCategories" [(ngModel)]="expense.category" [style]="{'width':'100%'}"></p-dropdown>
+
+                            <!-- <input pInputText type="text" [(ngModel)]="expense.category" required /> -->
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ expense.category }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td>
+                    <span class="p-column-title">Amount</span>
+
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="expense.amount" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ expense.amount | currency: "INR" }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Action</span>
+
+                    <div>
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(expense)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDlete(expense)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(expense)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(expense, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

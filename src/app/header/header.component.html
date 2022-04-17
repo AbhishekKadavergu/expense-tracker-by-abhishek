@@ -10,36 +10,23 @@
   </div>
 </div> -->
 
-<div class="p-grid p-shadow-5">
-  <div class="p-col-9">
-    <p-tabMenu
-      #tab
-      [model]="items"
-      [activeItem]="activeItem"
-      (click)="activateMenu(tab)"
-    ></p-tabMenu>
-  </div>
-  <div class="p-col-2" style="text-align: right">
-    <p style="margin-top: 12px">
-      Welcome, <span style="font-weight: 700">{{ userName }}</span>
-    </p>
-  </div>
+<div class="grid">
+    <div class="col-9">
+        <p-tabMenu #tab [model]="items" [activeItem]="activeItem" (click)="activateMenu(tab)"></p-tabMenu>
+    </div>
+    <div class="col-2" style="text-align: right">
+        <p style="margin-top: 12px">
+            Welcome, <span style="font-weight: 700">{{ userName }}</span>
+        </p>
+    </div>
 
-  <div class="p-col-1">
-    <!-- <button
+    <div class="col-1" style="text-align: right;">
+        <!-- <button
       pButton
       type="button"
       icon="pi pi-power-off"
       class="p-button-sm"
     ></button> -->
-    <button
-      pButton
-      style="margin-top: 5px"
-      pRipple
-      type="button"
-      icon="pi pi-power-off"
-      class="p-button-text p-button-plain"
-      (click)="signOut()"
-    ></button>
-  </div>
+        <button pButton style="margin-top: 5px" pRipple type="button" icon="pi pi-power-off" class="p-button-text p-button-plain" (click)="signOut()"></button>
+    </div>
 </div>
