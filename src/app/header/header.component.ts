@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
       { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', id: 'dashboard' },
       { label: 'Expenses', icon: 'pi pi-fw pi-minus', id: 'expense' },
       { label: 'Incomes', icon: 'pi pi-fw pi-plus', id: 'income' },
-      { label: 'Settings', icon: 'pi pi-fw pi-cog', id: 'home' },
+      // { label: 'Settings', icon: 'pi pi-fw pi-cog', id: 'home' },
     ];
     this.activeItem = this.items[1];
   }
