@@ -16,7 +16,7 @@ export class IncomesComponent implements OnInit {
 
   userIncomes: any;
   showTable: boolean = false;
-  date2: Date = new Date('2021-12-09T00:00:00.000Z');
+  date2: Date;
   incomeCategories: any[];
 
   rangeDates: Date[];
@@ -47,7 +47,6 @@ export class IncomesComponent implements OnInit {
       category: ['', Validators.required],
       date: ['', Validators.required],
     });
-    console.log(this.date2);
   }
 
   get formControls() {
@@ -171,12 +170,13 @@ export class IncomesComponent implements OnInit {
       if (!Incomes) {
         throw new Error();
       }
-      // this.userExpenses =  Expenses;
-      this.userIncomes = Incomes.sort(function (a: any, b: any) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return +new Date(a.date) - +new Date(b.date);
-      });
+      this.userIncomes =  Incomes.filter(income=> income.date = new Date(income.date));
+      console.log(this.userIncomes)
+      // this.userIncomes = Incomes.sort(function (a: any, b: any) {
+      //   // Turn your strings into dates, and then subtract them
+      //   // to get a value that is either negative, positive, or zero.
+      //   return +new Date(a.date) - +new Date(b.date);
+      // });
       this.showTable = true;
     } catch (error) {
       console.warn('Error: ', error);

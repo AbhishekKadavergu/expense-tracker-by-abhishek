@@ -186,11 +186,7 @@ export class ExpensesComponent implements OnInit {
         throw new Error();
       }
       // this.userExpenses =  Expenses;
-      this.userExpenses = Expenses.sort(function (a: any, b: any) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return +new Date(a.date) - +new Date(b.date);
-      });
+      this.userExpenses = Expenses.filter(expense=> expense.date = new Date(expense.date));
       this.showTable = true;
     } catch (error) {
       console.warn('Error: ', error);

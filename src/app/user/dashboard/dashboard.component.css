@@ -12,3 +12,7 @@
     background-color: #0288d1;
     color: #ffffff;
 }
+
+.details_card {
+    border: 0.05rem dotted rgb(165 165 165);
+}

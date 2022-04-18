@@ -14,7 +14,7 @@
         pInputText
         placeholder="Category"
       /> -->
-            <p-dropdown inputId="category" [options]="incomeCategories" placeholder="Select Category" formControlName="category" optionLabel="name"></p-dropdown>
+            <p-dropdown inputId="category" [options]="incomeCategories" placeholder="Select Category" formControlName="category" optionLabel="label"></p-dropdown>
         </div>
         <div class="field">
             <label for="date" class="p-sr-only">Date</label>
@@ -39,6 +39,7 @@
             [showIcon]="true"
             placeholder="Select a period" 
           ></p-calendar>
+
           <button
             style="margin-left: 2px"
             pButton
@@ -71,8 +72,7 @@
                 <td><span class="p-column-title">Date</span>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input type="date" [(ngModel)]="income.date">
-                            <!-- <p-calendar [(ngModel)]="date2" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy"></p-calendar> -->
+                            <p-calendar [(ngModel)]="income.date" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy"></p-calendar>
                         </ng-template>
                         <ng-template pTemplate="output">
                             <!-- {{ income.date | date: "dd/MM/yyyy" }} -->

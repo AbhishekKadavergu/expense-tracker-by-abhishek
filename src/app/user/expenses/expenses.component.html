@@ -14,7 +14,7 @@
         pInputText
         placeholder="Category"
       /> -->
-            <p-dropdown inputId="category" [options]="expCategories" placeholder="Select Category" formControlName="category" optionLabel="name"></p-dropdown>
+            <p-dropdown inputId="category" [options]="expCategories" placeholder="Select Category" formControlName="category" optionLabel="label"></p-dropdown>
         </div>
         <div class="field">
             <label for="date" class="p-sr-only">Date</label>
@@ -27,7 +27,7 @@
 <button pButton class="p-mb-3" type="button" label="Get Expenses" (click)="getAllDetails(undefined, undefined)"></button>
 
 <div class="card" *ngIf="showTable">
-    <p-table #dt [value]="userExpenses" dataKey="_id" editMode="row" [globalFilterFields]="['category', 'amount']" styleClass="p-datatable-responsive-demo">
+    <p-table #dt responsiveLayout="stack" [value]="userExpenses" dataKey="_id" editMode="row" [globalFilterFields]="['category', 'amount']">
         <ng-template pTemplate="caption">
             <div class="p-d-flex">
                 List of Expenses

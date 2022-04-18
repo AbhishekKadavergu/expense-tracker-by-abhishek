@@ -1,13 +1,8 @@
-<p-table
-  #dt
-  [value]="allDetails"
-  dataKey="_id"
-  [globalFilterFields]="['category', 'amount']"
->
-  <ng-template pTemplate="caption">
-    <div class="p-d-flex">
-      List of Incomes & Expenses
-      <span class="p-ml-auto">
+<p-table #dt [value]="allDetails" dataKey="_id" [globalFilterFields]="['category', 'amount']">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            List of Incomes & Expenses
+            <span class="p-ml-auto">
         <p-calendar
           [(ngModel)]="rangeDates"
           selectionMode="range"
@@ -23,7 +18,7 @@
           (click)="getDetailsWithinRange()"
         ></button>
       </span>
-      <span class="p-input-icon-left p-ml-auto">
+            <span class="p-input-icon-left p-ml-auto">
         <i class="pi pi-search"></i>
         <input
           pInputText
@@ -32,48 +27,44 @@
           placeholder="Search keyword"
         />
       </span>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Date</th>
-      <th>Category</th>
-      <th>Amount</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData>
-    <tr>
-      <td>{{ rowData.date | date }}</td>
-      <td>{{ rowData.category }}</td>
-      <td>
-        <div
-          [ngClass]="{
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+        <tr>
+            <td><span class="p-column-title">Date</span>{{ rowData.date | date }}</td>
+            <td><span class="p-column-title">Category</span>{{ rowData.category }}</td>
+            <td><span class="p-column-title">Amount</span>
+                <div [ngClass]="{
             expenses: rowData.flag === 0,
             incomes: rowData.flag > 0
-          }"
-        >
-          {{ rowData.amount | currency: "INR" }}
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <tr>
-      <td colspan="2" class="p-text-right">Balance</td>
-      <td>
-        <div
-          [ngClass]="{
+          }">
+                    {{ rowData.amount | currency: "INR" }}
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="2" class="p-text-right">Balance</td>
+            <td>
+                <div [ngClass]="{
             negative: balance < 0,
             positive: balance > 0
-          }"
-        >
-          {{ balance | currency: "INR" }}
-        </div>
-      </td>
-    </tr>
-  </ng-template>
+          }">
+                    {{ balance | currency: "INR" }}
+                </div>
+            </td>
+        </tr>
+    </ng-template>
 
-  <!-- <ng-template pTemplate="summary">
+    <!-- <ng-template pTemplate="summary">
     Balance :
     <span
       [ngClass]="{
