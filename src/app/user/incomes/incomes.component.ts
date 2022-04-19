@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'primeng/api';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
+import { UtilityService } from 'src/app/services/utility.service';
 @Component({
   selector: 'app-incomes',
   templateUrl: './incomes.component.html',
@@ -26,19 +27,10 @@ export class IncomesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private messageService: MessageService,
-    private restCallSer: RestCallsService
+    private restCallSer: RestCallsService,
+    private utSer: UtilityService
   ) {
-    this.incomeCategories = [
-      { label: 'Salary income', value: 'Salary income' },
-      { label: 'Profits income', value: 'Profits income' },
-      { label: 'Interest income', value: 'Interest income' },
-      { label: 'Dividend income', value: 'Dividend income' },
-      { label: 'Rental income', value: 'Rental income' },
-      { label: 'Capital Gains', value: 'Capital Gains' },
-      { label: 'Royalty income', value: 'Royalty income' },
-      { label: 'Miscellaneous', value: 'Miscellaneous' },
-      { label: 'Others', value: 'Others' },
-    ];
+    this.incomeCategories = utSer.getIncomeCategories()
   }
 
   ngOnInit(): void {

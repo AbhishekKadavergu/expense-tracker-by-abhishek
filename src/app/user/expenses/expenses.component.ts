@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'primeng/api';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
+import { Categories } from './expenseCategories';
+import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
   selector: 'app-expenses',
@@ -27,7 +29,7 @@ export class ExpensesComponent implements OnInit {
   // date2: Date = new Date("2002-12-09")
   date2: Date = new Date('2021-12-09T00:00:00.000Z');
   rangeDates: Date[];
-  expCategories: any[];
+  expCategories: Categories[];
   expenses: any;
 
   constructor(
@@ -35,25 +37,10 @@ export class ExpensesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private messageService: MessageService,
-    private restCallSer: RestCallsService
+    private restCallSer: RestCallsService,
+    private utSer: UtilityService
   ) {
-    this.expCategories = [
-      { label: 'Clothing & footwear', value: 'Clothing & footwear' },
-      { label: 'Communication', value: 'Communication' },
-      { label: 'Debts', value: 'Debts' },
-      { label: 'Education', value: 'Education' },
-      { label: 'EMI', value: 'EMI' },
-      { label: 'Gifts', value: 'Gifts' },
-      { label: 'Groceries', value: 'Groceries' },
-      { label: 'Health', value: 'Health' },
-      { label: 'Home & Utilities', value: 'Home & Utilities' },
-      { label: 'Hotel', value: 'Hotel' },
-      { label: 'Miscellaneous', value: 'Miscellaneous' },
-      { label: 'Pets', value: 'Pets' },
-      { label: 'Sports', value: 'Sports' },
-      { label: 'Transportation', value: 'Transportation' },
-      { label: 'Others', value: 'Others' },
-    ];
+    this.expCategories = utSer.getExpCategories()
   }
 
   ngOnInit(): void {

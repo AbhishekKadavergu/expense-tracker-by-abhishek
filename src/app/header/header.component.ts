@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     console.log(this.userName);
     console.log(environment.userName);
     this.items = [

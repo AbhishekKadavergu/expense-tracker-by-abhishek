@@ -26,33 +26,7 @@ export class RestCallsService {
   public incomeCategories: any[];
 
   constructor(private http: HttpClient) {
-    this.expCategories = [
-      { name: 'Clothing & footwear', code: 'Clothing & footwear' },
-      { name: 'Communication', code: 'Communication' },
-      { name: 'Education', code: 'Education' },
-      { name: 'Gifts', code: 'Gifts' },
-      { name: 'Groceries', code: 'Groceries' },
-      { name: 'Health', code: 'Health' },
-      { name: 'Home & Utilities', value: 'Home & Utilities' },
-      { name: 'Hotel', code: 'Hotel' },
-      { name: 'Miscellaneous', code: 'Miscellaneous' },
-      { name: 'Pets', code: 'Pets' },
-      { name: 'Sports', code: 'Sports' },
-      { name: 'Transportation', code: 'Transportation' },
-      { name: 'Others', code: 'Others' },
-    ];
 
-    this.incomeCategories = [
-      { name: 'Salary income', code: 'Salary income' },
-      { name: 'Profits income', code: 'Profits income' },
-      { name: 'Interest income', code: 'Interest income' },
-      { name: 'Dividend income', code: 'Dividend income' },
-      { name: 'Rental income', code: 'Rental income' },
-      { name: 'Capital Gains', code: 'Capital Gains' },
-      { name: 'Royalty income', code: 'Royalty income' },
-      { name: 'Miscellaneous', code: 'Miscellaneous' },
-      { name: 'Others', code: 'Others' },
-    ];
   }
 
   login(value) {

@@ -8,6 +8,7 @@ import { ProductListDemo } from './productlistdemo';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
 import { Product } from './product';
 import { ExpenseAndIncomeDetailsComponent } from '../expense-and-income-details/expense-and-income-details.component';
+import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private restCallSer: RestCallsService,
+    private utSer: UtilityService,
     private router: Router,
     private route: ActivatedRoute,
     public dialogService: DialogService,
@@ -67,12 +69,12 @@ export class DashboardComponent implements OnInit {
 
       this.expenses = expenses;
       var chartExp = [];
-      this.restCallSer.expCategories.forEach((category) => {
+      this.utSer.getExpCategories().forEach((category) => {
         let amt = 0;
         let label = null;
 
         this.expenses.forEach((exp) => {
-          if (exp.category === category.name) {
+          if (exp.category === category.label) {
             amt += exp.amount;
             label = exp.category;
           }
@@ -83,6 +85,7 @@ export class DashboardComponent implements OnInit {
         chartExp.push({
           category: label,
           amount: amt,
+          color: this.utSer.getExpCategories().find(cat=> cat.label===label).color
         });
       });
       console.log(chartExp);
@@ -108,12 +111,12 @@ export class DashboardComponent implements OnInit {
       }
       this.incomes = incomes;
       var chartInc = [];
-      this.restCallSer.incomeCategories.forEach((category) => {
+      this.utSer.getIncomeCategories().forEach((category) => {
         let amt = 0;
         let label = null;
 
         this.incomes.forEach((inc) => {
-          if (inc.category === category.name) {
+          if (inc.category === category.label) {
             amt += inc.amount;
             label = inc.category;
           }
@@ -124,6 +127,7 @@ export class DashboardComponent implements OnInit {
         chartInc.push({
           category: label,
           amount: amt,
+          color: this.utSer.getIncomeCategories().find(cat=> cat.label===label).color          
         });
       });
       console.log(chartInc);
@@ -150,7 +154,8 @@ export class DashboardComponent implements OnInit {
     expenses.forEach((expense) => {
       labels.push(expense.category);
       data.push(expense.amount);
-      colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      colors.push(expense.color);
+      // colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
     });
     this.data = {
       labels: labels,
@@ -171,7 +176,8 @@ export class DashboardComponent implements OnInit {
     incomes.forEach((expense) => {
       labels.push(expense.category);
       data.push(expense.amount);
-      colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      colors.push(expense.color);
+      // colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
     });
     this.IncomeData = {
       labels: labels,

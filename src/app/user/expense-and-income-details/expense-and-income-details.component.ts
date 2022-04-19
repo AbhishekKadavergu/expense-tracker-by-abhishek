@@ -42,7 +42,7 @@ export class ExpenseAndIncomeDetailsComponent implements OnInit {
     } catch (error) {
       console.warn('Error: ', error);
     } finally {
-      this.allDetails = [...this.expenses, ...this.incomes];
+      this.allDetails = [...this.expenses, ...this.incomes].sort((a, b)=> +new Date(a.date)- +new Date(b.date));
       this.balance =
         this.incomes.reduce((abc, cur) => {
           return abc + cur.amount;
