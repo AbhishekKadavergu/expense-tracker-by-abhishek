@@ -8,10 +8,13 @@ import { ExpensesComponent } from './user/expenses/expenses.component';
 import { IncomesComponent } from './user/incomes/incomes.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
+  { path: 'fpwd', component: ForgotPasswordComponent },
   {
     path: 'home',
     component: HomeComponent,
@@ -24,6 +27,7 @@ const routes: Routes = [
       },
       { path: 'expense', component: ExpensesComponent },
       { path: 'income', component: IncomesComponent },
+      {path: 'changepwd', component: ChangePasswordComponent}
     ],
   },
   { path: 'userReg', component: UserRegistrationComponent },

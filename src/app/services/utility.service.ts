@@ -44,4 +44,8 @@ export class UtilityService {
     return CATEGORIES
 
   }
+
+  getAuthToken():any {
+    return localStorage.getItem('token') 
+    }
 }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 //PrimeNG modules
@@ -19,6 +19,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {DialogModule} from 'primeng/dialog';
+import {TooltipModule} from 'primeng/tooltip';
+import {FileUploadModule} from 'primeng/fileupload';
+
+
+
+
 
 import { ChartModule } from 'primeng/chart';
 
@@ -37,6 +45,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProductListDemo } from './user/dashboard/productlistdemo';
 import { ProductService } from './user/dashboard/productservice';
 import { ExpenseAndIncomeDetailsComponent } from './user/expense-and-income-details/expense-and-income-details.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +62,8 @@ import { ExpenseAndIncomeDetailsComponent } from './user/expense-and-income-deta
     PageNotFoundComponent,
     ProductListDemo,
     ExpenseAndIncomeDetailsComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,8 +87,16 @@ import { ExpenseAndIncomeDetailsComponent } from './user/expense-and-income-deta
     CardModule,
     TabMenuModule,
     DynamicDialogModule,
+    OverlayPanelModule,
+    DialogModule,
+    TooltipModule,
+    FileUploadModule    
   ],
-  providers: [MessageService, DialogService, ProductService],
+  providers: [MessageService, DialogService, ProductService,     {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+   },],
   bootstrap: [AppComponent],
   entryComponents: [ProductListDemo],
 })

@@ -1,6 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
-  /* padding: 2em; */
-  font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica,
-    Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+    /* padding: 2em; */
+    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+}
+
+
+/* .user-pannel.p-overlaypanel {
+    background: #161616 !important;
+    color: #ffffff !important;
+} */
+
+.user-pannel.p-overlaypanel {
+    background: #161616;
+    color: #ffffff;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 59%), 0px 24px 38px 3px rgb(0 0 0 / 34%), 0px 9px 46px 8px rgb(0 0 0 / 39%);
+}
+
+.user-pannel.p-overlaypanel .p-overlaypanel-content {
+    padding: 0;
+}
+
+.p-fileupload-choose:not(.p-disabled):hover {
+    background: #c7c6c6;
+    color: #353535;
+    border-color: #b1b2b3;
+}
+
+.p-fileupload-choose:not(.p-disabled):active {
+    background: #c7c6c6;
+    color: #353535;
+    border-color: #b1b2b3;
 }

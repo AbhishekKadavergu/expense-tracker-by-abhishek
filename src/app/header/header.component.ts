@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { RestCallsService } from '../services/rest-calls.service';
 
@@ -11,18 +11,24 @@ import { RestCallsService } from '../services/rest-calls.service';
 })
 export class HeaderComponent implements OnInit {
   userName: string;
+  email: string;
   items: MenuItem[];
   activeItem: MenuItem;
+  displayModal:boolean = false
+  imageToShow:any;
+  isImageLoading:boolean = true
 
   constructor(
     private router: Router,
     private restCallSer: RestCallsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, private messageSer: MessageService
   ) {
     this.userName = environment.userName;
+    this.email = environment.email;
   }
 
   ngOnInit(): void {
+    this.getImage()
     
     console.log(this.userName);
     console.log(environment.userName);
@@ -59,5 +65,71 @@ export class HeaderComponent implements OnInit {
     console.log(tab);
     console.log(tab.activeItem);
     this.router.navigate([tab.activeItem.id], { relativeTo: this.route });
+  }
+
+  changeProfilePhoto(){
+    this.displayModal = true
+  }
+
+  navigateToCPWD(){
+    this.activeItem = {};
+    
+    this.router.navigate(['changepwd'], { relativeTo: this.route });
+    
+  }
+
+   onBasicUploadAuto(event:any){
+    this.getImage()
+            
+  }
+
+  async getImage(){
+    try {
+      this.isImageLoading = true
+      const data = await this.restCallSer.getUserAvatar()
+      if(!data){
+        throw new Error()
+      }
+      this.createImageFromBlob(data);
+      this.isImageLoading = false      
+      
+    } catch (error) {
+      this.isImageLoading = true
+      console.log(error)
+      
+    }
+  }
+
+
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
+
+  async deleteAvatar(){
+    try {
+      const message = await this.restCallSer.deleteUserAvatar()
+      if(!message.hasOwnProperty('success')){
+        throw new Error()
+      }
+
+      this.messageSer.add({severity:'success', summary:'Success', detail:message['success'], life: 5000});
+      this.imageToShow = null
+      this.isImageLoading = true
+      
+      
+    } catch (error) {      
+      this.messageSer.add({severity:'error', summary:'Error', detail:error.error.fail, life: 5000});
+      
+    }
+
+
   }
 }

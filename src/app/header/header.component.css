@@ -1,20 +1,3 @@
-.layout-topbar {
-    background-color: var(--surface-a);
-    height: 70px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 997;
-    box-shadow: 0 0 4px rgb(0 0 0 / 25%);
-    border-bottom: 1px solid var(--surface-d);
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 0 35px;
-}
-
 :host ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
     background: #ffffff;
     border-bottom: 4px solid #322b55;
@@ -59,8 +42,64 @@
     background-position: center center;
     background-size: cover;
     border: solid 2px rebeccapurple;
+    cursor: pointer;
 }
 
 .one {
-    background-image: url('https://via.placeholder.com/400x200');
+    background-image: url('../../assets/logos/avatar.png');
 }
+
+a {
+    cursor: pointer;
+}
+
+.profile-card {
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+.user-card {
+    padding: 1rem;
+    padding-top: 0;
+    border-top: 1px solid rgb(52 52 52);
+}
+
+.user-profile-photo-header {
+    cursor: pointer;
+    border: 2px solid rgb(31, 173, 97);
+    border-radius: 50%;
+}
+
+.user-profile-photo {
+    cursor: pointer;
+    border: 5px solid rgb(31, 173, 97);
+    border-radius: 50%;
+}
+
+.profile-hover:hover {
+    cursor: pointer;
+}
+
+div#child {
+    margin: 0 auto;
+}
+
+::ng-deep .ui-fileupload-choose .fa-plus::before {
+    content: "\F0A6";
+}
+
+:host ::ng-deep .p-fileupload-choose.p-button,
+.p-fileupload-choose.p-button .ui-widget,
+.p-fileupload-choose.p-button .ui-state-default {
+    background: rgba(96, 125, 139, 0.04);
+    color: #607D8B;
+    border: 1px solid;
+}
+
+
+/* :host ::ng-deep .p-fileupload-choose.p-button.ui-state-hover,
+.p-fileupload-choose.p-button.ui-state-focus,
+.p-fileupload-choose.p-button.ui-state-active {
+    background-color: #025aa5;
+    border-color: #acacac;
+} */

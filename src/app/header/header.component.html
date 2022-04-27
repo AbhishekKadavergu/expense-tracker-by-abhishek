@@ -1,20 +1,8 @@
-<!-- <div class="p-grid">
-  <div class="p-col p-shadow-5">
-    <p-tabMenu
-      #tab
-      [model]="items"
-      [activeItem]="activeItem"
-      (click)="activateMenu(tab)"
-    ></p-tabMenu>
-
-  </div>
-</div> -->
-
 <div class="grid">
     <div class="col-6">
         <p-tabMenu #tab [model]="items" [activeItem]="activeItem" (click)="activateMenu(tab)"></p-tabMenu>
     </div>
-    <div class="col-5" style="text-align: right">
+    <div class="col-6" style="text-align: right">
         <div class="flex justify-content-end flex-wrap card-container indigo-container">
             <div class="flex align-items-center justify-content-center font-bold text-black border-round m-2">
                 <p style="margin-top: 12px">
@@ -22,8 +10,14 @@
                 </p>
             </div>
             <div class="flex align-items-center justify-content-center font-bold text-black border-round m-2">
-                <div class="user one">
-                </div>
+                <!-- <div class="user one" (click)="op.toggle($event)">
+                </div> -->
+                <img *ngIf="!isImageLoading; else noImageFound1" class="user-profile-photo-header" [src]="imageToShow" alt="User Photo" width="50" height="50" (click)="op.toggle($event)">
+                <ng-template #noImageFound1>
+                    <img src="../../assets/logos/avatar.png" alt="User photo" class="user-profile-photo-header" width="50" height="50" (click)="op.toggle($event)">
+                </ng-template>
+
+
             </div>
         </div>
         <!-- <p style="margin-top: 12px">
@@ -33,13 +27,81 @@
         </div> -->
     </div>
 
-    <div class="col-1" style="text-align: right;">
-        <!-- <button
-      pButton
-      type="button"
-      icon="pi pi-power-off"
-      class="p-button-sm"
-    ></button> -->
+    <!-- <div class="col-1" style="text-align: right;">
         <button pButton style="margin-top: 5px" pRipple type="button" icon="pi pi-power-off" class="p-button-text p-button-plain" (click)="signOut()"></button>
-    </div>
+    </div> -->
 </div>
+
+<p-overlayPanel #op styleClass="user-pannel">
+    <ng-template pTemplate>
+
+        <div class="profile-card">
+            <div class="flex flex-column card-container green-container">
+                <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
+                    <img pTooltip="Click to Change/Remove" pTooltip="Click to Change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" *ngIf="!isImageLoading; else noImageFound2" [src]="imageToShow" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto()">
+                    <ng-template #noImageFound2>
+                        <img src="../../assets/logos/avatar.png" pTooltip="Click to change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" alt="User photo" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto()">
+                    </ng-template>
+
+                </div>
+                <div class=" flex align-items-center justify-content-center h-1rem text-white border-round ">{{ userName }}</div>
+                <div class="flex align-items-center justify-content-center h-1rem text-white border-round mt-1 mb-2 ">{{email}}</div>
+
+            </div>
+        </div>
+
+
+
+        <div class="card user-card ">
+            <div class="flex flex-column card-container green-container ">
+                <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 mt-0 p-2 ">
+                    <a (click)="navigateToCPWD() ">Change Password</a>
+                </div>
+                <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
+                    <a (click)="changeProfilePhoto() "> Change Profile Photo</a>
+                </div>
+
+                <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
+                    <a (click)="signOut() ">Sign out</a></div>
+            </div>
+        </div>
+
+    </ng-template>
+</p-overlayPanel>
+
+<p-dialog header="Profile picture" [(visible)]="displayModal " [modal]="true " [style]="{width: '50vw'} " [draggable]="false " [resizable]="false ">
+    <p class="p-m-0 ">A picture lets you know when you’re signed in to your account. </p>
+    <p> <strong>Tip: </strong>Use a recent photo of yourself.</p>
+
+    <div class="flex flex-column card-container green-container">
+        <div class="flex align-items-center justify-content-center font-bold text-black border-round m-2">
+            <img class="user-profile-photo" style="cursor: default;" *ngIf="!isImageLoading; else noImageFound3" [src]="imageToShow" alt="User Photo" width="250" height="250">
+
+            <ng-template #noImageFound3>
+                <img class="user-profile-photo" style="cursor: default;" src="../../assets/logos/avatar.png" alt="User photo" width="250" height="250">
+
+            </ng-template>
+
+
+
+        </div>
+    </div>
+
+    <div id="parent">
+        <div id="child" class="flex align-items-center justify-content-between flex-wrap card-container blue-container" style="width: 50%;">
+            <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
+                <p-fileUpload #fubauto mode="basic" name="avatar" url="http://localhost:3000/users/me/avatar" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Change" chooseIcon="pi pi-pencil"></p-fileUpload>
+
+            </div>
+            <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
+                <button pButton pRipple type="button" label="Remove" class="p-button-outlined p-button-secondary" icon="pi pi-trash" (click)="deleteAvatar()"></button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <ng-template pTemplate="footer ">
+        <p-button icon="pi pi-check " (click)="displayModal=false " label="Ok " styleClass="p-button-text "></p-button>
+    </ng-template>
+</p-dialog>

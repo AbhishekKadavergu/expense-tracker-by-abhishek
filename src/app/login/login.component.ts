@@ -51,6 +51,10 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       environment.token = user['token'];
       environment.userName = user['user'].name;
+      environment.email = user['user'].email;
+      environment.userId = user['user']._id;
+      localStorage.setItem('token', user['token'])
+
       this.router.navigate(['/home']);
     } catch (error) {
       this.isLoading = false;
@@ -62,5 +66,9 @@ export class LoginComponent implements OnInit {
       console.warn(error);
     }
     // this.router.navigateByUrl('/admin');
+  }
+
+  forgotPassword(){
+    this.router.navigateByUrl('fpwd')
   }
 }

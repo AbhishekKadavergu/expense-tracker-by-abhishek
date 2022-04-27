@@ -6,8 +6,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RestCallsService {
+
+  //user
   private loginURL = environment.API_URL + '/users/login';
   private logoutURL = environment.API_URL + '/users/logout';
+  private change_PWD_URL = environment.API_URL + '/users/me/changepwd';
+  private forgot_PWD_URL = environment.API_URL + '/users/forgotpwd';
+  private set_PWD_URL = environment.API_URL + '/users/setpwd';
+  private delete_avatar_URL = environment.API_URL + '/users/me/avatar';
+  private user_URL = environment.API_URL + '/users/'
+
+
 
   //Expense URL
   private addExpURL = environment.API_URL + '/expenses';
@@ -35,28 +44,38 @@ export class RestCallsService {
 
   logOut() {
     console.log('Logged out!');
-    this.setHeaders();
-    return this.http.post(this.logoutURL, {}, this.httpOptions).toPromise();
+    return this.http.post(this.logoutURL, {}).toPromise();
+  }
+  
+  changePassword(creds:any){
+    return this.http.patch(this.change_PWD_URL,creds).toPromise()
   }
 
-  setHeaders() {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + environment.token,
-      }),
-    };
+  getUserQuestion(email:any){
+    return this.http.post(this.forgot_PWD_URL, email).toPromise()
   }
+
+  setNewPassword(questionObj:any){
+    return this.http.post(this.set_PWD_URL, questionObj).toPromise()
+  }
+  
+  getUserAvatar(){
+    return this.http.get("http://localhost:3000/users/"+environment.userId+"/avatar", {responseType: 'blob'}).toPromise()
+  }
+  
+  deleteUserAvatar(){
+    return this.http.delete(this.delete_avatar_URL).toPromise()
+  }
+  
+
 
   //Expense related methods
   addExpense(value) {
-    this.setHeaders();
-    return this.http.post(this.addExpURL, value, this.httpOptions).toPromise();
+    return this.http.post(this.addExpURL, value).toPromise();
   }
 
   getExpenses() {
-    this.setHeaders();
-    return this.http.get(this.getAllExpnsURL, this.httpOptions).toPromise();
+    return this.http.get(this.getAllExpnsURL).toPromise();
   }
 
   getExpensesByRange(start: any = undefined, end: any = undefined) {
@@ -74,10 +93,6 @@ export class RestCallsService {
     }
 
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + environment.token,
-      }),
       params: new HttpParams()
         .set('start', firstDay.toLocaleDateString())
         .set('end', today.toLocaleDateString()),
@@ -89,8 +104,6 @@ export class RestCallsService {
   }
 
   updateExpense(expense) {
-    this.setHeaders();
-
     return this.http
       .patch(
         this.updateExpenseURL + expense._id,
@@ -105,23 +118,20 @@ export class RestCallsService {
   }
 
   deleteExpenseById(expense) {
-    this.setHeaders();
     return this.http
-      .delete(this.deleteExpByIdURL + expense._id, this.httpOptions)
+      .delete(this.deleteExpByIdURL + expense._id)
       .toPromise();
   }
 
   //Income related methods
   addIncome(value) {
-    this.setHeaders();
     return this.http
-      .post(this.addIncomeURL, value, this.httpOptions)
+      .post(this.addIncomeURL, value)
       .toPromise();
   }
 
   getIncomes() {
-    this.setHeaders();
-    return this.http.get(this.getAllIncmsURL, this.httpOptions).toPromise();
+    return this.http.get(this.getAllIncmsURL).toPromise();
   }
 
   getIncomesByRange(start: any = undefined, end: any = undefined) {
@@ -137,10 +147,6 @@ export class RestCallsService {
     }
 
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + environment.token,
-      }),
       params: new HttpParams()
         .set('start', firstDay.toLocaleDateString())
         .set('end', today.toLocaleDateString()),
@@ -152,7 +158,6 @@ export class RestCallsService {
   }
 
   updateIncome(income) {
-    this.setHeaders();
 
     return this.http
       .patch(
@@ -161,16 +166,14 @@ export class RestCallsService {
           category: income.category,
           amount: income.amount,
           date: income.date,
-        },
-        this.httpOptions
+        }
       )
       .toPromise();
   }
 
   deleteIncomeById(income) {
-    this.setHeaders();
     return this.http
-      .delete(this.deleteIncByIdURL + income._id, this.httpOptions)
+      .delete(this.deleteIncByIdURL + income._id)
       .toPromise();
   }
 }
