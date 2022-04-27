@@ -51,8 +51,13 @@ export class ChangePasswordComponent implements OnInit {
 
   async changePassword() {
     console.log(this.bioSection.value);
+    const passwords = {
+      "curent_password": this.curent_password.value,
+      "new_password": this.new_password.value,
+      "confirm_password": this.confirm_password.value
+    }
     try {
-      const message = await this.rs.changePassword(this.bioSection.value)
+      const message = await this.rs.changePassword(passwords)
       if (!message.hasOwnProperty('success')) {
         throw new Error('Failed')
       }
