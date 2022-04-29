@@ -23,6 +23,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {DialogModule} from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import {FileUploadModule} from 'primeng/fileupload';
+import {StepsModule} from 'primeng/steps';
+
 
 
 
@@ -48,6 +50,7 @@ import { ExpenseAndIncomeDetailsComponent } from './user/expense-and-income-deta
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,7 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     ChartModule,
     ButtonModule,
@@ -90,7 +94,8 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
     OverlayPanelModule,
     DialogModule,
     TooltipModule,
-    FileUploadModule    
+    FileUploadModule,
+    StepsModule    
   ],
   providers: [MessageService, DialogService, ProductService,     {
     provide: HTTP_INTERCEPTORS,
