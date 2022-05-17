@@ -30,6 +30,7 @@ import {StepsModule} from 'primeng/steps';
 
 
 
+
 import { ChartModule } from 'primeng/chart';
 
 //Services
@@ -51,6 +52,7 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { CommonModule } from '@angular/common';
     ExpenseAndIncomeDetailsComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

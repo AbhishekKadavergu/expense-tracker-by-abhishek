@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpResponse,
-} from '@angular/common/http';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+
 import { MessageService } from 'primeng/api';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
 import { Categories } from './expenseCategories';
 import { UtilityService } from 'src/app/services/utility.service';
+
 
 @Component({
   selector: 'app-expenses',
@@ -32,13 +27,13 @@ export class ExpensesComponent implements OnInit {
   expCategories: Categories[];
   expenses: any;
 
+
+
   constructor(
-    private router: Router,
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private messageService: MessageService,
     private restCallSer: RestCallsService,
-    private utSer: UtilityService
+    private utSer: UtilityService,
   ) {
     this.expCategories = utSer.getExpCategories()
   }
@@ -49,7 +44,6 @@ export class ExpensesComponent implements OnInit {
       category: ['', Validators.required],
       date: ['', Validators.required],
     });
-    console.log(new Date('2002-12-09T00:00:00.000Z'));
   }
 
   get formControls() {
@@ -180,4 +174,6 @@ export class ExpensesComponent implements OnInit {
       this.setUserMessages('error', 'Error', error.error.message);
     }
   }
+
+
 }

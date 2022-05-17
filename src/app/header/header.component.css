@@ -1,8 +1,12 @@
+.tool-bar {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
 :host ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
     background: #ffffff;
-    border-bottom: 4px solid #322b55;
+    border-bottom: 4px solid #fbc02d;
     border-style: solid;
-    border-color: #322b55;
+    border-color: #fbc02d;
     color: #000000;
     border-radius: 5px;
 }

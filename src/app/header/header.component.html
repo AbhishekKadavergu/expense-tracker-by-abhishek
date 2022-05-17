@@ -1,35 +1,17 @@
-<div class="grid">
+<div class="grid tool-bar">
     <div class="col-6">
         <p-tabMenu #tab [model]="items" [activeItem]="activeItem" (click)="activateMenu(tab)"></p-tabMenu>
     </div>
     <div class="col-6" style="text-align: right">
         <div class="flex justify-content-end flex-wrap card-container indigo-container">
-            <div class="flex align-items-center justify-content-center font-bold text-black border-round m-2">
-                <p style="margin-top: 12px">
-                    Welcome, <span style="font-weight: 700">{{ userName }}</span>
-                </p>
-            </div>
-            <div class="flex align-items-center justify-content-center font-bold text-black border-round m-2">
-                <!-- <div class="user one" (click)="op.toggle($event)">
-                </div> -->
+            <div class="flex align-items-center justify-content-center font-bold text-black border-round">
                 <img *ngIf="!isImageLoading; else noImageFound1" class="user-profile-photo-header" [src]="imageToShow" alt="User Photo" width="50" height="50" (click)="op.toggle($event)">
                 <ng-template #noImageFound1>
                     <img src="../../assets/logos/avatar.png" alt="User photo" class="user-profile-photo-header" width="50" height="50" (click)="op.toggle($event)">
                 </ng-template>
-
-
             </div>
         </div>
-        <!-- <p style="margin-top: 12px">
-            Welcome, <span style="font-weight: 700">{{ userName }}</span>
-        </p>
-        <div class="user one">
-        </div> -->
     </div>
-
-    <!-- <div class="col-1" style="text-align: right;">
-        <button pButton style="margin-top: 5px" pRipple type="button" icon="pi pi-power-off" class="p-button-text p-button-plain" (click)="signOut()"></button>
-    </div> -->
 </div>
 
 <p-overlayPanel #op styleClass="user-pannel">
@@ -38,14 +20,16 @@
         <div class="profile-card">
             <div class="flex flex-column card-container green-container">
                 <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
-                    <img pTooltip="Click to Change/Remove" pTooltip="Click to Change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" *ngIf="!isImageLoading; else noImageFound2" [src]="imageToShow" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto()">
+                    <img pTooltip="Click to Change/Remove" pTooltip="Click to Change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" *ngIf="!isImageLoading; else noImageFound2" [src]="imageToShow" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto($event, op)">
                     <ng-template #noImageFound2>
-                        <img src="../../assets/logos/avatar.png" pTooltip="Click to change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" alt="User photo" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto()">
+                        <img src="../../assets/logos/avatar.png" pTooltip="Click to change/Remove" tooltipPosition="top" class="user-profile-photo profile-hover" alt="User photo" alt="User Photo" width="100" height="100" (click)="changeProfilePhoto($event, op)">
                     </ng-template>
 
                 </div>
-                <div class=" flex align-items-center justify-content-center h-1rem text-white border-round ">{{ userName }}</div>
-                <div class="flex align-items-center justify-content-center h-1rem text-white border-round mt-1 mb-2 ">{{email}}</div>
+                <div class=" flex align-items-center justify-content-center h-1rem text-white border-round ">{{ userName }}
+                </div>
+                <div class="flex align-items-center justify-content-center h-1rem text-white border-round mt-1 mb-2 ">
+                    {{email}}</div>
 
             </div>
         </div>
@@ -55,14 +39,15 @@
         <div class="card user-card ">
             <div class="flex flex-column card-container green-container ">
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 mt-0 p-2 ">
-                    <a (click)="navigateToCPWD() ">Change Password</a>
+                    <a (click)="navigateToCPWD($event, op) ">Change Password</a>
                 </div>
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
-                    <a (click)="changeProfilePhoto() "> Change Profile Photo</a>
+                    <a (click)="changeProfilePhoto($event, op) "> Change Profile Photo</a>
                 </div>
 
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
-                    <a (click)="signOut() ">Sign out</a></div>
+                    <a (click)="signOut() ">Sign out</a>
+                </div>
             </div>
         </div>
 
@@ -90,7 +75,7 @@
     <div id="parent">
         <div id="child" class="flex align-items-center justify-content-between flex-wrap card-container blue-container" style="width: 50%;">
             <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
-                <p-fileUpload #fubauto mode="basic" name="avatar" url="http://localhost:3000/users/me/avatar" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Change" chooseIcon="pi pi-pencil"></p-fileUpload>
+                <p-fileUpload #fubauto mode="basic" name="avatar" [url]="uploadUserAvatarUrl" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Change" chooseIcon="pi pi-pencil"></p-fileUpload>
 
             </div>
             <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2">
@@ -101,7 +86,7 @@
     </div>
 
 
-    <ng-template pTemplate="footer ">
-        <p-button icon="pi pi-check " (click)="displayModal=false " label="Ok " styleClass="p-button-text "></p-button>
-    </ng-template>
+    <!-- <ng-template pTemplate="footer ">
+        <p-button icon="pi pi-times" (click)="displayModal=false " label="Cancel" styleClass="p-button-text "></p-button>
+    </ng-template> -->
 </p-dialog>

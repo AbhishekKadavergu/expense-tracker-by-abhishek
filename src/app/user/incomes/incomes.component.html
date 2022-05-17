@@ -18,18 +18,33 @@
         </div>
         <div class="field">
             <label for="date" class="p-sr-only">Date</label>
-            <p-calendar placeholder="Date" formControlName="date" [showIcon]="true" inputId="date"></p-calendar>
+            <p-calendar placeholder="Date" formControlName="date" [showIcon]="true" inputId="date" appendTo="body" class="calenderIconBtn"></p-calendar>
         </div>
-        <button pButton type="submit" label="ADD"></button>
+        <button pButton pRipple type="submit" label="ADD" class="p-button-outlined p-button-secondary outlinedBtn"></button>
     </div>
 </form>
 
-<button pButton class="p-mb-3" type="button" label="Get Incomes" (click)="getIncomesByRange(undefined, undefined)"></button>
+<button pButton class="mb-3 detailsButton" type="button" label="Get Incomes" (click)="getIncomesByRange(undefined, undefined)"></button>
 
 <div class="card" *ngIf="showTable">
     <p-table responsiveLayout="stack" #dt [value]="userIncomes" dataKey="_id" editMode="row" [globalFilterFields]="['category', 'amount']">
         <ng-template pTemplate="caption">
-            <div class="p-d-flex">
+            <div class="flex justify-content-between flex-wrap card-container">
+                <div class="flex align-items-center justify-content-center   font-bold text-black border-round m-2">List of Incomes</div>
+                <div class="flex align-items-center justify-content-center   font-bold text-white border-round m-2">
+                    <span class="p-ml-auto">
+                        <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                            [showIcon]="true" placeholder="Select a period" appendTo="body"></p-calendar>
+                        <button style="margin-left: 2px" pButton type="button" label="Go"
+                            (click)="getDetailsWithinRange()" class="p-button-outlined p-button-secondary outlinedBtn"></button>
+                    </span> </div>
+                <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2"> <span class="p-input-icon-left p-ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search keyword" />
+                    </span></div>
+            </div>
+            <!-- <div class="p-d-flex">
                 List of Incomes
                 <span class="p-ml-auto">
           <p-calendar
@@ -38,7 +53,7 @@
             [readonlyInput]="true"
             [showIcon]="true"
             placeholder="Select a period" 
-          ></p-calendar>
+            appendTo="body"></p-calendar>
 
           <button
             style="margin-left: 2px"
@@ -57,7 +72,7 @@
             placeholder="Search keyword"
           />
         </span>
-            </div>
+            </div> -->
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
@@ -72,7 +87,7 @@
                 <td><span class="p-column-title">Date</span>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <p-calendar [(ngModel)]="income.date" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy"></p-calendar>
+                            <p-calendar [(ngModel)]="income.date" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy" appendTo="body"></p-calendar>
                         </ng-template>
                         <ng-template pTemplate="output">
                             <!-- {{ income.date | date: "dd/MM/yyyy" }} -->

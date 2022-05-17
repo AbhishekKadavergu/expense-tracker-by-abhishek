@@ -7,55 +7,38 @@
         </div>
         <div class="field">
             <label for="category" class="p-sr-only">Category</label>
-            <!-- <input
-        id="category"
-        type="text"
-        formControlName="category"
-        pInputText
-        placeholder="Category"
-      /> -->
             <p-dropdown inputId="category" [options]="expCategories" placeholder="Select Category" formControlName="category" optionLabel="label"></p-dropdown>
         </div>
         <div class="field">
             <label for="date" class="p-sr-only">Date</label>
-            <p-calendar placeholder="Date" formControlName="date" [showIcon]="true" inputId="date"></p-calendar>
+            <p-calendar placeholder="Date" formControlName="date" [showIcon]="true" inputId="date" appendTo="body" styleClass="calender-btn">
+            </p-calendar>
         </div>
-        <button pButton type="submit" label="ADD"></button>
+        <button pButton pRipple type="submit" label="ADD" class="p-button-outlined p-button-secondary outlinedBtn"></button>
     </div>
 </form>
 
-<button pButton class="p-mb-3" type="button" label="Get Expenses" (click)="getAllDetails(undefined, undefined)"></button>
+<button pButton class="mb-3 detailsButton" type="button" label="Get Expenses" (click)="getAllDetails(undefined, undefined)"></button>
+
+
 
 <div class="card" *ngIf="showTable">
     <p-table #dt responsiveLayout="stack" [value]="userExpenses" dataKey="_id" editMode="row" [globalFilterFields]="['category', 'amount']">
         <ng-template pTemplate="caption">
-            <div class="p-d-flex">
-                List of Expenses
-                <span class="p-ml-auto">
-          <p-calendar
-            [(ngModel)]="rangeDates"
-            selectionMode="range"
-            [readonlyInput]="true"
-            [showIcon]="true"
-            placeholder="Select a period"
-          ></p-calendar>
-          <button
-            style="margin-left: 2px"
-            pButton
-            type="button"
-            label="Go"
-            (click)="getDetailsWithinRange()"
-          ></button>
-        </span>
-                <span class="p-input-icon-left p-ml-auto">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Search keyword"
-          />
-        </span>
+            <div class="flex justify-content-between flex-wrap card-container">
+                <div class="flex align-items-center justify-content-center   font-bold text-black border-round m-2">List of Expenses</div>
+                <div class="flex align-items-center justify-content-center   font-bold text-white border-round m-2">
+                    <span class="p-ml-auto">
+                        <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                            [showIcon]="true" placeholder="Select a period" appendTo="body"></p-calendar>
+                        <button style="margin-left: 2px" pButton type="button" label="Go"
+                            (click)="getDetailsWithinRange()" class="p-button-outlined p-button-secondary outlinedBtn"></button>
+                    </span> </div>
+                <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2"> <span class="p-input-icon-left p-ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search keyword" />
+                    </span></div>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -76,7 +59,6 @@
                             <p-calendar [(ngModel)]="expense.date" [showIcon]="true" inputId="icon" dateFormat="dd.mm.yy"></p-calendar>
                         </ng-template>
                         <ng-template pTemplate="output">
-                            <!-- {{ expense.date | date: "dd/MM/yyyy" }} -->
                             {{ expense.date | date }}
                         </ng-template>
                     </p-cellEditor>
@@ -88,7 +70,6 @@
                         <ng-template pTemplate="input">
                             <p-dropdown [options]="expCategories" [(ngModel)]="expense.category" [style]="{'width':'100%'}"></p-dropdown>
 
-                            <!-- <input pInputText type="text" [(ngModel)]="expense.category" required /> -->
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ expense.category }}
@@ -112,10 +93,10 @@
                     <span class="p-column-title">Action</span>
 
                     <div>
-                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(expense)" class="p-button-rounded p-button-text"></button>
-                        <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDlete(expense)" class="p-button-rounded p-button-text p-button-danger"></button>
-                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(expense)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
-                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(expense, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(expense)" class="p-button-rounded p-button-text action_buttons"></button>
+                        <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDlete(expense)" class="p-button-rounded p-button-text p-button-danger action_buttons"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(expense)" class="p-button-rounded p-button-text p-button-success p-mr-2 action_buttons"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(expense, ri)" class="p-button-rounded p-button-text p-button-danger action_buttons"></button>
                     </div>
                 </td>
             </tr>

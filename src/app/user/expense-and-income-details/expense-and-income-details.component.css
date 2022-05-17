@@ -1,8 +1,9 @@
 .expenses {
-  font-weight: 700;
-  color: #ff5252;
-  /* text-decoration: line-through; */
+    font-weight: 700;
+    color: #ff5252;
+    /* text-decoration: line-through; */
 }
+
 
 /* .lowstock {
   font-weight: 700;
@@ -10,16 +11,36 @@
 } */
 
 .incomes {
-  font-weight: 700;
-  color: #66bb6a;
+    font-weight: 700;
+    color: #66bb6a;
 }
 
 .negative {
-  font-weight: 700;
-  color: #fbc02d;
+    font-weight: 700;
+    color: #fbc02d;
 }
 
 .positive {
-  font-weight: 700;
-  color: #0288d1;
+    font-weight: 700;
+    color: #0288d1;
+}
+
+.detailsButton.p-button {
+    color: #ffffff;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}
+
+.detailsButton.p-button:hover {
+    color: black;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
 }

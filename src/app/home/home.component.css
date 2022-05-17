@@ -1,14 +1,35 @@
-.layout_topbar {
-    background-color: var(--surface-a);
+/* .header {
+    overflow: hidden;
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    z-index: 997;
-    box-shadow: 0 0 4px rgb(0 0 0 / 25%);
-    border-bottom: 1px solid var(--surface-d);
 }
 
-.layout_contentbar {
-    top: 100;
+.main-content {
+    padding: 16px;
+    margin-top: 100px;
+    height: 1500px;
+} */
+
+
+/* .main-content {
+    min-height: calc(100vh - 95px);
+}
+
+.footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+    background: #6cf;
+} */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }

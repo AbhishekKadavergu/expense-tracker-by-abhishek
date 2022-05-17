@@ -1,0 +1,26 @@
+.detailsButton.p-button {
+    color: #ffffff;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}
+
+.detailsButton.p-button:hover {
+    color: black;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}
+
+.calenderIconBtn.p-button.p-button-icon-only {
+    width: 2.357rem;
+    padding: 0.5rem 0;
+    background: #fbc02d !important;
+    border: none;
+}

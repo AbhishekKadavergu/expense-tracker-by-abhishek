@@ -60,7 +60,7 @@ export class RestCallsService {
   }
   
   getUserAvatar(){
-    return this.http.get("http://localhost:3000/users/"+environment.userId+"/avatar", {responseType: 'blob'}).toPromise()
+    return this.http.get(environment.API_URL+"/users/"+environment.userId+"/avatar", {responseType: 'blob'}).toPromise()
   }
   
   deleteUserAvatar(){
@@ -86,7 +86,7 @@ export class RestCallsService {
         y = date.getFullYear(),
         m = date.getMonth();
       firstDay = new Date(y, m, 1);
-      today = new Date();
+      today = new Date(y, m+1, 0);
     } else {
       firstDay = start;
       today = end;

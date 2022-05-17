@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   displayModal:boolean = false
   imageToShow:any;
   isImageLoading:boolean = true
+  uploadUserAvatarUrl:string = environment.API_URL+'/users/me/avatar'
 
   constructor(
     private router: Router,
@@ -33,13 +34,12 @@ export class HeaderComponent implements OnInit {
     console.log(this.userName);
     console.log(environment.userName);
     this.items = [
-      { label: 'Home', icon: 'pi pi-fw pi-home', id: 'dashboard' },
       { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', id: 'dashboard' },
       { label: 'Expenses', icon: 'pi pi-fw pi-minus', id: 'expense' },
       { label: 'Incomes', icon: 'pi pi-fw pi-plus', id: 'income' },
       // { label: 'Settings', icon: 'pi pi-fw pi-cog', id: 'home' },
     ];
-    this.activeItem = this.items[1];
+    this.activeItem = this.items[0];
   }
 
   toExpenses(Events: any) {
@@ -67,13 +67,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([tab.activeItem.id], { relativeTo: this.route });
   }
 
-  changeProfilePhoto(){
+  changeProfilePhoto(event, element){
+    element.hide(event);
     this.displayModal = true
+
   }
 
-  navigateToCPWD(){
-    this.activeItem = {};
-    
+  navigateToCPWD(event, element){
+    element.hide(event);
+    this.activeItem = {};    
     this.router.navigate(['changepwd'], { relativeTo: this.route });
     
   }

@@ -78,7 +78,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.submitted = true
       this.onNext(item)
     } catch (error) {
-      console.log(error)
+      this.messageSer.add({severity:'error', summary:'Error', detail:error.error.error, life: 5000});
+
+      console.log(error.error.error)
       
     }
   }
@@ -97,7 +99,7 @@ export class ForgotPasswordComponent implements OnInit {
       if(!USER){
         throw new Error()
       }
-      this.messageSer.add({severity:'success', summary:'Success', detail:'Please login with new credentials, you will be redirected to login page!', life: 5000});
+      this.messageSer.add({severity:'success', summary:'Success', detail:'A new password has been set', life: 5000});
       this.onNext(item)
       // setTimeout(() => {
       //   this.router.navigateByUrl('login')        
@@ -116,6 +118,10 @@ export class ForgotPasswordComponent implements OnInit {
     }else{
       this.step = item['activeIndex']+1
     }
+  }
+
+  login(){
+    this.router.navigateByUrl("login")
   }
 
   // onResponseAndPwdSubmit(){

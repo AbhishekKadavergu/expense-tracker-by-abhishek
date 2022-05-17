@@ -1,39 +1,22 @@
-<p-table #dt [value]="allDetails" dataKey="_id" [globalFilterFields]="['category', 'amount']">
+<p-table #dt [value]="allDetails" [columns]="cols" dataKey="_id" [globalFilterFields]="['category', 'amount']">
     <ng-template pTemplate="caption">
-        <div class="p-d-flex">
-            List of Incomes & Expenses
-            <span class="p-ml-auto">
-        <p-calendar
-          [(ngModel)]="rangeDates"
-          selectionMode="range"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="Select a period"
-        ></p-calendar>
-        <button
-          style="margin-left: 2px"
-          pButton
-          type="button"
-          label="Go"
-          (click)="getDetailsWithinRange()"
-        ></button>
-      </span>
-            <span class="p-input-icon-left p-ml-auto">
-        <i class="pi pi-search"></i>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Search keyword"
-        />
-      </span>
+        <div class="flex justify-content-between flex-wrap card-container">
+            <div class="flex align-items-center justify-content-center   font-bold text-black border-round">Incomes & Expenses</div>
+
+            <div class="flex align-items-center justify-content-center font-bold text-white border-round"> <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword" />
+            </span></div>
+            <button type="button" pButton pRipple icon="pi pi-file-o" (click)="dt.exportCSV()" pTooltip="Export as CSV" tooltipPosition="bottom" class="detailsButton"></button>
+
         </div>
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
         <tr>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData>
@@ -50,6 +33,13 @@
             </td>
         </tr>
     </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                No records found
+            </td>
+        </tr>
+    </ng-template>
     <ng-template pTemplate="footer">
         <tr>
             <td colspan="2" class="p-text-right">Balance</td>
@@ -63,16 +53,4 @@
             </td>
         </tr>
     </ng-template>
-
-    <!-- <ng-template pTemplate="summary">
-    Balance :
-    <span
-      [ngClass]="{
-        negative: balance < 0,
-        positive: balance > 0
-      }"
-    >
-      {{ balance }}</span
-    >
-  </ng-template> -->
 </p-table>

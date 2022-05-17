@@ -1,77 +1,106 @@
 .login {
-  width: 400px;
-  margin: 16px auto;
-  font-size: 16px;
+    width: 400px;
+    margin: 16px auto;
+    font-size: 16px;
 }
 
 .login-header,
 .login p {
-  margin-top: 0;
-  margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .login-triangle {
-  width: 0;
-  margin-right: auto;
-  margin-left: auto;
-  border: 12px solid transparent;
-  border-bottom-color: rgb(15, 66, 107);
+    width: 0;
+    margin-right: auto;
+    margin-left: auto;
+    border: 12px solid transparent;
+    border-bottom-color: rgb(15, 66, 107);
 }
 
 .login-header {
-  background: rgb(12, 77, 129);
-  padding: 20px;
-  font-size: 1.4em;
-  font-weight: normal;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
+    background: rgba(0, 0, 0, .75);
+    padding: 20px;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+    /* text-transform: uppercase; */
+    color: #fff;
 }
 
 .login-container {
-  background: #ebebeb;
-  padding: 12px;
+    background: rgba(0, 0, 0, .75);
+    padding: 12px;
 }
 
 .login p {
-  padding: 12px;
+    padding: 12px;
 }
 
 .login input {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  padding: 16px;
-  outline: 0;
-  font-family: inherit;
-  font-size: 0.95em;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 16px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 0.95em;
 }
 
 .login input[type="email"],
 .login input[type="password"] {
-  background: #fff;
-  border-color: #bbb;
-  color: #555;
+    background: #fff;
+    border-color: #bbb;
+    color: #555;
 }
 
 .login input[type="email"]:focus,
 .login input[type="password"]:focus {
-  border-color: #888;
+    border-color: #888;
 }
 
 .login input[type="submit"] {
-  background: rgb(1, 29, 51);
-  border-color: transparent;
-  color: #fff;
-  cursor: pointer;
+    background: rgb(1, 29, 51);
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
 }
 
 .login input[type="submit"]:hover {
-  background: #17c;
+    background: #17c;
 }
 
 .login input[type="submit"]:focus {
-  border-color: #05a;
+    border-color: #05a;
+}
+
+.container {
+    background-image: url('../../../assets/background-images/pexels-karolina-grabowska-5412326.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.detailsButton.p-button {
+    display: block;
+    width: 100%;
+    color: #ffffff;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}
+
+.detailsButton.p-button:hover {
+    color: black;
+    background: #fbc02d !important;
+    border: 1px solid #fbc02d;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
 }

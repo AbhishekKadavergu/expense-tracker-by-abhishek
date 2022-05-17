@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Something went wrong!',
+        detail: error.error.error,
       });
       console.warn(error);
     }

@@ -12,7 +12,6 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'fpwd', component: ForgotPasswordComponent },
   {
@@ -31,6 +30,7 @@ const routes: Routes = [
     ],
   },
   { path: 'userReg', component: UserRegistrationComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];
 

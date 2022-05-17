@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ProductListDemo } from './productlistdemo';
-// import { Product } from './product';
 
 import { RestCallsService } from 'src/app/services/rest-calls.service';
 import { Product } from './product';
 import { ExpenseAndIncomeDetailsComponent } from '../expense-and-income-details/expense-and-income-details.component';
 import { UtilityService } from 'src/app/services/utility.service';
 
+interface City {
+  name: string,
+  code: string
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,14 +19,25 @@ import { UtilityService } from 'src/app/services/utility.service';
   providers: [DialogService, MessageService],
 })
 export class DashboardComponent implements OnInit {
-  expenses: any;
-  incomes: any;
+  expenses = [];
+  incomes = [];
   data: any;
   IncomeData: any;
-  currentMonthYear: any;
   totalExpense: number;
   totalIncome: number;
   ref: DynamicDialogRef;
+  timeOptions: City[];
+  selectedTime: City;
+
+  // years: City[] = [];
+  selectedYear: Date;
+  rangeDates: Date[];
+  monthly: Date = new Date()
+
+  startDay: Date
+  endDay: Date
+
+
 
   constructor(
     private restCallSer: RestCallsService,
@@ -52,7 +65,16 @@ export class DashboardComponent implements OnInit {
       'December',
     ];
 
-    this.currentMonthYear = m_names[m] + ', ' + y;
+    this.timeOptions = [
+      { name: 'Monthly', code: 'monthly' },
+      { name: 'Yearly', code: 'yearly' },
+      { name: 'Period', code: 'period' }
+    ];
+
+    this.selectedTime = { name: 'Monthly', code: 'monthly' }
+    var y = this.monthly.getFullYear(), m = this.monthly.getMonth();
+    this.startDay = new Date(y, m, 1);
+    this.endDay = new Date(y, m + 1, 0);
   }
 
   ngOnInit(): void {
@@ -60,9 +82,10 @@ export class DashboardComponent implements OnInit {
     this.getAllIncomes();
   }
 
-  async getAllExpenses() {
+
+  async getAllExpenses(start: any = undefined, end: any = undefined) {
     try {
-      const expenses = await this.restCallSer.getExpensesByRange();
+      const expenses = await this.restCallSer.getExpensesByRange(start, end);
       if (!expenses) {
         throw new Error();
       }
@@ -85,7 +108,7 @@ export class DashboardComponent implements OnInit {
         chartExp.push({
           category: label,
           amount: amt,
-          color: this.utSer.getExpCategories().find(cat=> cat.label===label).color
+          color: this.utSer.getExpCategories().find(cat => cat.label === label).color
         });
       });
       console.log(chartExp);
@@ -96,6 +119,7 @@ export class DashboardComponent implements OnInit {
       console.log(this.expenses);
     } catch (error) {
       if (error.status === 404) {
+        this.expenses = []
         this.totalExpense = 0;
       }
       console.warn(error);
@@ -103,9 +127,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  async getAllIncomes() {
+  async getAllIncomes(start: any = undefined, end: any = undefined) {
     try {
-      const incomes = await this.restCallSer.getIncomesByRange();
+      const incomes = await this.restCallSer.getIncomesByRange(start, end);
       if (!incomes) {
         throw new Error();
       }
@@ -127,7 +151,7 @@ export class DashboardComponent implements OnInit {
         chartInc.push({
           category: label,
           amount: amt,
-          color: this.utSer.getIncomeCategories().find(cat=> cat.label===label).color          
+          color: this.utSer.getIncomeCategories().find(cat => cat.label === label).color
         });
       });
       console.log(chartInc);
@@ -140,6 +164,8 @@ export class DashboardComponent implements OnInit {
     } catch (error) {
       if (error.status === 404) {
         this.totalIncome = 0;
+        this.incomes = []
+
       }
       console.warn(error);
       console.warn(error.status);
@@ -199,7 +225,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['../income'], { relativeTo: this.route });
   }
 
-  getAllDetails() {}
+  getAllDetails() { }
 
   show() {
     this.ref = this.dialogService.open(ExpenseAndIncomeDetailsComponent, {
@@ -207,6 +233,10 @@ export class DashboardComponent implements OnInit {
       width: '70%',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       baseZIndex: 10000,
+      data: {
+        start: this.startDay,
+        end: this.endDay
+    },
     });
 
     this.ref.onClose.subscribe((product: Product) => {
@@ -218,6 +248,45 @@ export class DashboardComponent implements OnInit {
         });
       }
     });
+  }
+
+  onTimeLineChange(event) {
+    console.log(event)
+    console.log(this.selectedTime)
+
+  }
+
+  selectedTimeLine() {
+    console.log("Hello")
+    if (this.selectedTime.code === 'monthly') {
+      console.log(this.monthly)
+      var y = this.monthly.getFullYear(), m = this.monthly.getMonth();
+      this.startDay = new Date(y, m, 1);
+      this.endDay = new Date(y, m + 1, 0);
+      console.log(this.startDay)
+      console.log(this.endDay)
+      this.getAllExpenses(this.startDay, this.endDay)
+      this.getAllIncomes(this.startDay, this.endDay)
+    }
+    if (this.selectedTime.code === 'yearly') {
+      console.log(this.selectedYear)
+      var y = this.selectedYear.getFullYear(), m = this.selectedYear.getMonth();
+       this.startDay = new Date(y, m, 1);
+       this.endDay = new Date(y, 11, 31);
+       console.log(this.startDay)
+       console.log(this.endDay)
+       this.getAllExpenses(this.startDay, this.endDay)
+       this.getAllIncomes(this.startDay, this.endDay)
+    }
+    if (this.selectedTime.code === 'period') {
+      console.log(this.rangeDates)
+      this.startDay = this.rangeDates[0]
+      this.endDay = this.rangeDates[1]
+      this.getAllExpenses(this.startDay, this.endDay)
+      this.getAllIncomes(this.startDay, this.endDay)
+
+    }
+
   }
 
   ngOnDestroy() {
