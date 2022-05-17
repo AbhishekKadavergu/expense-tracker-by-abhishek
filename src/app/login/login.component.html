@@ -3,6 +3,7 @@
     <main>
         <div class="login-container">
             <div class="login">
+                <p class="sign-in">Sign In</p>
                 <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
                     <!-- <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
                             <input type="email" placeholder="Email" formControlName="email" />
@@ -36,15 +37,20 @@
                         </div>
                     </div>
 
-                    <p>
-                        <button pButton pRipple type="submit" label="LOG IN" class="p-button-outlined p-button-rounded p-button-secondary outlinedBtn"></button>
+                    <div class="flex justify-content-between flex-wrap">
+                        <div class="flex align-items-center justify-content-center">
+                            <button pButton pRipple type="submit" label="Sign In" class="p-button-outlined p-button-rounded p-button-secondary outlinedBtn"></button>
 
-                    </p>
+                        </div>
+                        <div class="flex align-items-center justify-content-center">
+                            <a (click)="forgotPassword()" class="forgotpwd">Forgot password</a>
+                        </div>
+
+                    </div>
                 </form>
 
-                <a (click)="forgotPassword()" class="forgotpwd">Forgot password</a>
 
-                <p>If new user, please register <a routerLink="/userReg" class="forgotpwd">here</a></p>
+                <p class="register-ptag">New to Money Tracker? <a routerLink="/userReg" class="forgotpwd" style="font-size: 20px; font-weight: 700;">Register now.</a></p>
                 <div *ngIf="isLoading" style="text-align: center">
                     <p-progressSpinner></p-progressSpinner>
                     <p>Authenticating....</p>

@@ -28,7 +28,16 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* background-image: url('../../assets/background-images/pexels-karolina-grabowska-5412326.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
+
+
+/* .sub-container {
+    background: rgba(0, 0, 0, .75);
+} */
 
 main {
     flex: 1;

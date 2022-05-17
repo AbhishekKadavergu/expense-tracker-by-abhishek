@@ -3,9 +3,11 @@
 } */
 
 .login {
-    margin: 2rem;
     max-width: 400px;
     max-height: 400px;
+    margin: 3rem auto;
+    background: rgba(0, 0, 0, .75);
+    padding: 1rem;
 }
 
 .login-container {
@@ -14,15 +16,34 @@
 
 .forgotpwd {
     cursor: pointer;
-    color: dodgerblue;
+    color: white;
+    text-decoration: none;
+}
+
+.forgotpwd:hover {
+    text-decoration: underline;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-image: url('../../assets/background-images/pexels-karolina-grabowska-5412326.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
     flex: 1;
+}
+
+.sign-in {
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.register-ptag {
+    color: white;
 }
