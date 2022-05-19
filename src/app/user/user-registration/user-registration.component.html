@@ -1,41 +1,68 @@
 <div class="container">
     <main>
+        <div class="signin-div">
+            <div class="signin-div-ele">
+                <p class="app-title">Money Tracker</p>
+            </div>
+            <div class="signin-div-ele">
+                <a routerLink="/login" class="signin-link">Sign In</a>
+            </div>
+        </div>
         <div class="login">
             <p class="login-header">User Registration</p>
-            <form [formGroup]="userRegForm" class="login-container" (ngSubmit)="login()">
-                <p [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
-                    <input type="text" placeholder="Name" formControlName="name" />
-                </p>
+            <form [formGroup]="userRegForm" class="login-container" (ngSubmit)="signup()">
 
-                <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
-                    <div *ngIf="formControls.name.errors.required">Name is required</div>
-                </div>
-
-                <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
-                    <input type="email" placeholder="Email" formControlName="email" />
-                </p>
-
-                <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
-                    <div *ngIf="formControls.email.errors.required">Email is required</div>
-                </div>
-
-                <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
-                    <input type="password" placeholder="Password" formControlName="password" />
-                </p>
-
-                <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
-                    <div *ngIf="formControls.password.errors.required">
-                        Password is required
+                <div class="p-float-label field">
+                    <input id="float-input-name" type="text" pInputText formControlName="name" class="inputfield w-full blackbgInput">
+                    <label for="float-input-name">Name</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.name.touched) && formControls.name.errors" class="help-block">
+                        <small *ngIf="formControls.name.errors.required" class="error-message-color">Name is required</small>
                     </div>
                 </div>
 
-                <p [ngClass]="{ 'has-error': isSubmitted && formControls.age.errors }">
-                    <input type="number" placeholder="Age" formControlName="age" />
-                </p>
-
-                <div *ngIf="isSubmitted && formControls.age.errors" class="help-block">
-                    <div *ngIf="formControls.password.age.required">Age is required</div>
+                <div class="p-float-label field mt-5">
+                    <input id="float-input-email" type="email" pInputText formControlName="email" class="inputfield w-full blackbgInput">
+                    <label for="float-input-email">Email</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.email.touched) && formControls.email.errors" class="help-block">
+                        <small *ngIf="formControls.email.errors.required" class="error-message-color">Email is required</small>
+                    </div>
                 </div>
+
+                <div class="p-float-label field mt-5">
+                    <input id="float-input-password" type="password" pInputText formControlName="password" class="inputfield w-full blackbgInput">
+                    <label for="float-input-password">Password</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.password.touched) && formControls.password.errors" class="help-block">
+                        <small *ngIf="formControls.password.errors.required" class="error-message-color">Password is required</small>
+                    </div>
+                </div>
+
+                <div class="p-float-label field mt-5">
+                    <input id="float-input-age" type="number" pInputText formControlName="age" class="inputfield w-full blackbgInput">
+                    <label for="float-input-age">Age</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.age.touched) && formControls.age.errors" class="help-block">
+                        <small *ngIf="formControls.age.errors.required" class="error-message-color">Age is required</small>
+                    </div>
+                </div>
+
+
+
+                <div class="p-float-label field mt-5">
+                    <input id="float-input-mother" type="text" pInputText formControlName="qst1" class="inputfield w-full blackbgInput">
+                    <label for="float-input-mother">{{qst1}}</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.qst1.touched) && formControls.qst1.errors" class="help-block">
+                        <small *ngIf="formControls.qst1.errors.required" class="error-message-color">Please type your respone</small>
+                    </div>
+                </div>
+
+                <div class="p-float-label field mt-5">
+                    <input id="float-input-sport" type="text" pInputText formControlName="qst2" class="inputfield w-full blackbgInput">
+                    <label for="float-input-sport">{{qst2}}</label>
+                    <div *ngIf="(isSubmitted || userRegForm.controls.qst2.touched) && formControls.qst2.errors" class="help-block">
+                        <small *ngIf="formControls.qst2.errors.required" class="error-message-color">Please type your respone</small>
+                    </div>
+                </div>
+
+
 
                 <p>
                     <button type="submit" pButton class="detailsButton" label="REGISTER"> </button>

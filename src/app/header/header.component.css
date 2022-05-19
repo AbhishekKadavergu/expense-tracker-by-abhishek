@@ -1,6 +1,11 @@
 .tool-bar {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-    margin-top: 2px;
+    /* margin-top: 2px; */
+}
+
+:host ::ng-deep .p-tabmenu-nav-container {
+    position: relative;
+    padding: 0 1rem;
 }
 
 :host ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
@@ -30,12 +35,12 @@
     border-color: transparent transparent transparent transparent;
     background: #ffffff;
     color: #6c757d;
-    padding: 1rem;
+    /* padding: 1rem; */
     font-weight: 600;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     transition: box-shadow 0.2s;
-    margin: 0 0 -2px 0;
+    /* margin: 0 0 -2px 0; */
 }
 
 .user {

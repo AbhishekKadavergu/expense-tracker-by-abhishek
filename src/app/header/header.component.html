@@ -2,7 +2,7 @@
     <div class="col-6">
         <p-tabMenu #tab [model]="items" [activeItem]="activeItem" (click)="activateMenu(tab)"></p-tabMenu>
     </div>
-    <div class="col-6" style="text-align: right">
+    <div class="col-6" style="text-align: right; margin-top: 5px;">
         <div class="flex justify-content-end flex-wrap card-container indigo-container">
             <div class="flex align-items-center justify-content-center font-bold text-black border-round">
                 <img *ngIf="!isImageLoading; else noImageFound1" class="user-profile-photo-header" [src]="imageToShow" alt="User Photo" width="50" height="50" (click)="op.toggle($event)">
@@ -39,12 +39,11 @@
         <div class="card user-card ">
             <div class="flex flex-column card-container green-container ">
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 mt-0 p-2 ">
-                    <a (click)="navigateToCPWD($event, op) ">Change Password</a>
+                    <a (click)="navigateToCPWD($event, op)">Change Password</a>
                 </div>
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
-                    <a (click)="changeProfilePhoto($event, op) "> Change Profile Photo</a>
+                    <a (click)="changeProfilePhoto($event, op)">Change Profile Photo</a>
                 </div>
-
                 <div class="flex align-items-start justify-content-start h-1rem font-normal text-white border-round m-2 p-2 ">
                     <a (click)="signOut() ">Sign out</a>
                 </div>

@@ -15,6 +15,7 @@ body {
 } */
 
 .user-pannel.p-overlaypanel {
+    min-width: 250px !important;
     background: #161616;
     color: #ffffff;
     border: 0 none;
@@ -65,7 +66,7 @@ body {
 
 .p-inputtext {
     margin: 0;
-    background: transparent;
+    background: transparent !important;
     border: none;
     border-bottom: 1px solid;
 }
@@ -95,6 +96,61 @@ body {
 .p-calendar-w-btn .p-datepicker-trigger {
     border: none;
     background-color: #fbc02d !important;
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+    transition: box-shadow 0.2s;
+    border-radius: 3px;
+    background: transparent !important;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-title {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+    background: #fbc02d;
+    color: #000000;
+}
+
+.blackbgInput.p-inputtext {
+    color: #ffffff;
+}
+
+.signin-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid rgba(0, 0, 0, .75);
+    /* border-bottom: rgb(216, 33, 33); */
+}
+
+.signin-div-ele {
+    padding: 0 1rem;
+}
+
+.signin-link {
+    color: #f50247;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.signin-link:hover {
+    text-decoration: underline;
+}
+
+.app-title {
+    color: #f50247;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.error-message-color {
+    color: #f50247;
 }
 
 :focus {
