@@ -1,8 +1,8 @@
 <div class="grid tool-bar">
-    <div class="col-6">
+    <div class="col-10">
         <p-tabMenu #tab [model]="items" [activeItem]="activeItem" (click)="activateMenu(tab)"></p-tabMenu>
     </div>
-    <div class="col-6" style="text-align: right; margin-top: 5px;">
+    <div class="col-2" style="text-align: right; margin-top: 5px;">
         <div class="flex justify-content-end flex-wrap card-container indigo-container">
             <div class="flex align-items-center justify-content-center font-bold text-black border-round">
                 <img *ngIf="!isImageLoading; else noImageFound1" class="user-profile-photo-header" [src]="imageToShow" alt="User Photo" width="50" height="50" (click)="op.toggle($event)">
