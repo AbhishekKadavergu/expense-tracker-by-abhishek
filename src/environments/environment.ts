@@ -8,8 +8,8 @@ export const environment = {
   userName: '',
   email: '',
   userId: '',
-  // API_URL:'http://localhost:3000'
-  API_URL:'https://abhishek-expense-tracker.herokuapp.com'
+  API_URL: 'http://localhost:3000',
+  // API_URL:'https://abhishek-expense-tracker.herokuapp.com'
 };
 
 /*
