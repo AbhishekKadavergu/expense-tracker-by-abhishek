@@ -18,20 +18,15 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogModule } from 'primeng/dialog';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { StepsModule } from 'primeng/steps';
-import { ToastModule } from 'primeng/toast';
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
 import { AuthInterceptorService } from '../services/auth-interceptor.service';
 import { MessageService } from 'primeng/api';
 
@@ -55,13 +50,9 @@ import { MessageService } from 'primeng/api';
     DynamicDialogModule,
     OverlayPanelModule,
     DialogModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     ChartModule,
     ButtonModule,
     InputTextModule,
-    TableModule,
     ContextMenuModule,
     ProgressSpinnerModule,
     CardModule,
@@ -71,9 +62,6 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     TooltipModule,
     StepsModule,
-    ToastModule,
-    MessagesModule,
-    MessageModule,
   ],
   providers: [
     MessageService,

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 //PrimeNG modules
@@ -19,9 +19,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { StepsModule } from 'primeng/steps';
-import { ToastModule } from 'primeng/toast';
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
 
 //Services
 import { MessageService } from 'primeng/api';
@@ -52,9 +49,6 @@ import { SharedModule } from './shared-module/shared-module.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule,
     CommonModule,
     ButtonModule,
@@ -69,9 +63,6 @@ import { SharedModule } from './shared-module/shared-module.module';
     DialogModule,
     TooltipModule,
     StepsModule,
-    ToastModule,
-    MessagesModule,
-    MessageModule,
   ],
   providers: [
     MessageService,
