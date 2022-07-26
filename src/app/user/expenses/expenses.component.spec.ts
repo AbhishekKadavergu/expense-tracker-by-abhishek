@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 import { ExpensesComponent } from './expenses.component';
 
@@ -8,9 +11,10 @@ describe('ExpensesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpensesComponent ]
-    })
-    .compileComponents();
+      declarations: [ExpensesComponent],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule],
+      providers: [MessageService],
+    }).compileComponents();
   });
 
   beforeEach(() => {

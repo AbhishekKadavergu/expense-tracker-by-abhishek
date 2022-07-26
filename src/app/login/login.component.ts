@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,21 +18,26 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private messageService: MessageService,
     private restCallSer: RestCallsService
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)]),
+      ],
     });
-    
   }
 
-  get formControls() {
-    return this.loginForm.controls;
+  get email() {
+    return this.loginForm.controls.email;
+  }
+
+  get password() {
+    return this.loginForm.controls.password;
   }
 
   async login() {
@@ -54,7 +58,7 @@ export class LoginComponent implements OnInit {
       environment.userName = user['user'].name;
       environment.email = user['user'].email;
       environment.userId = user['user']._id;
-      localStorage.setItem('token', user['token'])
+      localStorage.setItem('token', user['token']);
 
       this.router.navigate(['/home']);
     } catch (error) {
@@ -69,7 +73,7 @@ export class LoginComponent implements OnInit {
     // this.router.navigateByUrl('/admin');
   }
 
-  forgotPassword(){
-    this.router.navigateByUrl('fpwd')
+  forgotPassword() {
+    this.router.navigateByUrl('fpwd');
   }
 }

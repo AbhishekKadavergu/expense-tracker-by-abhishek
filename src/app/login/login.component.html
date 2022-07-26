@@ -13,30 +13,35 @@
             <div class="login">
                 <p class="sign-in">Sign In</p>
                 <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
-                    <!-- <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+                    <!-- <p [ngClass]="{ 'has-error': isSubmitted && email.errors }">
                             <input type="email" placeholder="Email" formControlName="email" />
                         </p> -->
 
                     <div class="p-float-label field">
                         <input id="float-input-email" type="email" pInputText formControlName="email" class="inputfield w-full blackbgInput">
                         <label for="float-input-email">Email</label>
-                        <div *ngIf="(isSubmitted || formControls.email.touched) && formControls.email.errors" class="help-block">
-                            <small *ngIf="formControls.email.errors.required" class="error-message-color">Email is required</small>
+                        <div *ngIf="(isSubmitted || email.touched) && email.errors" class="help-block">
+                            <small *ngIf="email.errors.required" class="error-message-color">Email is
+                                required</small>
+                            <small *ngIf="email.errors.email" class="error-message-color">Enter a valid email</small>
                         </div>
                     </div>
 
 
 
-                    <!-- <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+                    <!-- <p [ngClass]="{ 'has-error': isSubmitted && password.errors }">
                             <input type="password" placeholder="Password" formControlName="password" />
                         </p> -->
 
-                    <div class="p-float-label field mt-4">
+                    <div class="p-float-label field mt-5">
                         <input id="float-input-password" type="password" pInputText formControlName="password" class="inputfield w-full blackbgInput">
                         <label for="float-input-password">Password</label>
-                        <div *ngIf="(isSubmitted || formControls.password.touched) && formControls.password.errors" class="help-block">
-                            <small *ngIf="formControls.password.errors.required" class="error-message-color">
+                        <div *ngIf="(isSubmitted || password.touched) && password.errors" class="help-block">
+                            <small *ngIf="password.errors.required" class="error-message-color">
                                 Password is required
+                            </small>
+                            <small *ngIf="password.errors.minlength" class="error-message-color">
+                                Password should be a minimum of 6 characters long
                             </small>
                         </div>
                     </div>
@@ -47,7 +52,7 @@
 
                     <div class="flex justify-content-between flex-wrap">
                         <div class="flex align-items-center justify-content-center">
-                            <button pButton pRipple type="submit" label="Sign In" class="p-button-outlined p-button-rounded p-button-secondary outlinedBtn"></button>
+                            <button pButton pRipple type="submit" [disabled]="loginForm.invalid" label="Sign In" class="p-button-outlined p-button-rounded p-button-secondary outlinedBtn"></button>
 
                         </div>
                         <div class="flex align-items-center justify-content-center">

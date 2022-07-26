@@ -47,3 +47,8 @@ main {
 .register-ptag {
     color: white;
 }
+
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}

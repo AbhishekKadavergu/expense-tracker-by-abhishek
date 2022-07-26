@@ -3,7 +3,7 @@
     <div class="formgroup-inline">
         <div class="field">
             <label for="amount" class="p-sr-only">Amount</label>
-            <input id="amount" type="number" formControlName="amount" pInputText placeholder="Amount" />
+            <input id="amount" [type]="1==1?'number':'text'" formControlName="amount" pInputText placeholder="Amount" />
         </div>
         <div class="field">
             <label for="category" class="p-sr-only">Category</label>
@@ -32,8 +32,10 @@
                         <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
                             [showIcon]="true" placeholder="Select a period" appendTo="body"></p-calendar>
                         <button style="margin-left: 2px" pButton type="button" label="Go"
-                            (click)="getDetailsWithinRange()" class="p-button-outlined p-button-secondary outlinedBtn"></button>
-                    </span> </div>
+                            (click)="getDetailsWithinRange()"
+                            class="p-button-outlined p-button-secondary outlinedBtn"></button>
+                    </span>
+                </div>
                 <div class="flex align-items-center justify-content-center font-bold text-white border-round m-2"> <span class="p-input-icon-left p-ml-auto">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
