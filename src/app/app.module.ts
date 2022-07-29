@@ -6,11 +6,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 //PrimeNG modules
-import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
-
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -22,7 +20,6 @@ import { StepsModule } from 'primeng/steps';
 
 //Services
 import { MessageService } from 'primeng/api';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
@@ -51,7 +48,6 @@ import { SharedModule } from './shared-module/shared-module.module';
     AppRoutingModule,
     SharedModule,
     CommonModule,
-    ButtonModule,
     InputTextModule,
     TableModule,
     ContextMenuModule,
@@ -75,6 +71,5 @@ import { SharedModule } from './shared-module/shared-module.module';
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ProductListDemo],
 })
 export class AppModule {}
