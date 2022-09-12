@@ -1,13 +1,14 @@
 <p-table #dt [value]="allDetails" [columns]="cols" dataKey="_id" [globalFilterFields]="['category', 'amount']">
     <ng-template pTemplate="caption">
         <div class="flex justify-content-between flex-wrap card-container">
-            <div class="flex align-items-center justify-content-center   font-bold text-black border-round">Incomes & Expenses</div>
+            <div class="flex align-items-center justify-content-center   font-bold text-black border-round">Incomes & Expenses
+            </div>
 
             <div class="flex align-items-center justify-content-center font-bold text-white border-round"> <span class="p-input-icon-left p-ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                    placeholder="Search keyword" />
-            </span></div>
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" />
+                </span></div>
             <button type="button" pButton pRipple icon="pi pi-file-o" (click)="dt.exportCSV()" pTooltip="Export as CSV" tooltipPosition="bottom" class="detailsButton"></button>
 
         </div>

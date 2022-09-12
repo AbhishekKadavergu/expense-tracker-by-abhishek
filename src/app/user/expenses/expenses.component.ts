@@ -7,7 +7,6 @@ import { RestCallsService } from 'src/app/services/rest-calls.service';
 import { Categories } from './expenseCategories';
 import { UtilityService } from 'src/app/services/utility.service';
 
-
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
@@ -27,15 +26,13 @@ export class ExpensesComponent implements OnInit {
   expCategories: Categories[];
   expenses: any;
 
-
-
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private restCallSer: RestCallsService,
-    private utSer: UtilityService,
+    private utSer: UtilityService
   ) {
-    this.expCategories = utSer.getExpCategories()
+    this.expCategories = utSer.getExpCategories();
   }
 
   ngOnInit(): void {
@@ -167,13 +164,13 @@ export class ExpensesComponent implements OnInit {
         throw new Error();
       }
       // this.userExpenses =  Expenses;
-      this.userExpenses = Expenses.filter(expense=> expense.date = new Date(expense.date));
+      this.userExpenses = Expenses.filter(
+        (expense) => (expense.date = new Date(expense.date))
+      );
       this.showTable = true;
     } catch (error) {
       console.warn('Error: ', error);
       this.setUserMessages('error', 'Error', error.error.message);
     }
   }
-
-
 }
