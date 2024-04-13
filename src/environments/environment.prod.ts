@@ -5,5 +5,5 @@ export const environment = {
   email: '',
   userId: '',
   // API_URL: 'http://localhost:3000',
-  API_URL: 'https://abhishek-expense-tracker.herokuapp.com',
+  API_URL: 'https://expense-manager-api-1kgg.onrender.com',
 };
